@@ -2,7 +2,7 @@ package proyecto;
 
 /**
  *
- * @author Keiron Garro Matamoros C23212
+ * @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740
  */
 public class Proyecto {
 
