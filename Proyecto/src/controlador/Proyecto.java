@@ -1,4 +1,4 @@
-package proyecto;
+package controlador;
 
 /**
  * VERSION 1.0
