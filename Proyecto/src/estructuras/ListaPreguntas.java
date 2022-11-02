@@ -154,7 +154,64 @@ public class ListaPreguntas {
     }
     
     
-    public void actualizarPregunta(){
+    public void actualizarPregunta(int id, String texto, String categoria, boolean respuesta){
+        
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] instanceof PreguntaVerdaderoFalso){
+                if (lista[i].getId() == id){
+                    
+                    lista[i].setTexto(texto);
+                    lista[i].setCategoria(categoria);
+                    lista[i].setRespuesta(respuesta);
+                }
+            }
+        }
+    }
+    
+    public void actualizarPregunta(String texto, String categoria, String respuesta1, 
+                                String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta){
+        
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] instanceof PreguntaSeleccionUnica){
+                if (lista[i].getId() == id){
+                    
+                    lista[i].setTexto(texto);
+                    lista[i].setCategoria(categoria);
+                    lista[i].setRespuesta1(respuesta1);
+                    lista[i].setRespuesta2(respuesta2);
+                    lista[i].setRespuesta3(respuesta3);
+                    lista[i].setRespuesta4(respuesta4);
+                    lista[i].setOpcionCorrecta(opcionCorrecta);
+                }
+            }
+        }
+        
+    }
+    
+    public void actualizarPregunta(String texto, String categoria, String respuesta1, 
+                                boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2, 
+                                String respuesta3, boolean valorRespuesta3, String respuesta4,
+                                boolean valorRespuesta4){
+        
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] instanceof PreguntaSeleccionMultiple){
+                if (lista[i].getId() == id){
+                    
+                    lista[i].setTexto(texto);
+                    lista[i].setCategoria(categoria);
+                    lista[i].setRespuesta1(respuesta1);
+                    lista[i].setValorRespuesta1(valorRespuesta1);
+                    lista[i].setRespuesta2(respuesta2);
+                    lista[i].setValorRespuesta2(valorRespuesta2);
+                    lista[i].setRespuesta3(respuesta3);
+                    lista[i].setValorRespuesta3(valorRespuesta3);
+                    lista[i].setRespuesta4(respuesta4);
+                    lista[i].setValorRespuesta4(valorRespuesta4);
+                    
+                }
+            }
+        }
+        
     }
     
     public void eliminarPregunta(){
