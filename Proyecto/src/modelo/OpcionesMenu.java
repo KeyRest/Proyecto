@@ -15,9 +15,24 @@ public class OpcionesMenu {
     
     }
     
-    public void insertarPregunta(String texto, String categoria, int tipoPregunta){
-        //Texto de la pregunta
+    public void insertarPregunta(){
+        String textoPregunta = "";
+        boolean controlTexto = true;
         
+        
+        
+        while(controlTexto == true){
+            
+            //Texto de la pregunta
+            escritor.escribir("INSERTE EL TEXTO DE LA PREGUNTA: ");
+            textoPregunta = lector.leerString();
+            
+            if(textoPregunta.length()){
+                
+            } else{
+                escritor.escribir("ERROR, LA LONGITUD DE LA PREGUNTA DEBE ESTAR ENTRE 4 Y 20 CARACTERES");
+            }
+        }
         
     }
     
