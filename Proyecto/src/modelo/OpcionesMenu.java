@@ -8,31 +8,30 @@ import vistas.terminal.Escritor;
 import vistas.terminal.Lector;
 
 public class OpcionesMenu {
-    Escritor escritor = new Escritor();
-    Lector lector = new Lector();
     
     public OpcionesMenu(){
     
     }
     
-    public void insertarPregunta(){
-        String textoPregunta = "";
-        boolean controlTexto = true;
+    public void insertarPregunta(String texto, String categoria, boolean respuesta){
+        PreguntaVerdaderoFalso pregunta =new PreguntaVerdaderoFalso(texto, categoria, respuesta);
         
+    }
+    
+    public void insertarPregunta(String texto, String categoria, String respuesta, 
+                                String incorrecta1, String incorrecta2, String incorrecta3){
+        PreguntaSeleccionUnica pregunta =new PreguntaSeleccionUnica(texto, categoria, respuesta, 
+                                             incorrecta1, incorrecta2, incorrecta3);
         
-        
-        while(controlTexto == true){
-            
-            //Texto de la pregunta
-            escritor.escribir("INSERTE EL TEXTO DE LA PREGUNTA: ");
-            textoPregunta = lector.leerString();
-            
-            if(textoPregunta.length()){
-                
-            } else{
-                escritor.escribir("ERROR, LA LONGITUD DE LA PREGUNTA DEBE ESTAR ENTRE 4 Y 20 CARACTERES");
-            }
-        }
+    }
+    
+    public void insertarPregunta(String texto, String categoria, String opcion1, 
+                                boolean valor1, String opcion2, boolean valor2, 
+                                String opcion3, boolean valor3, String opcion4,
+                                boolean valor4){
+        PreguntaSeleccionMultiple pregunta =new PreguntaSeleccionMultiple(texto, categoria, opcion1,
+                                                valor1, opcion2, valor2, 
+                                                opcion3, valor3, opcion3, valor4);
         
     }
     
