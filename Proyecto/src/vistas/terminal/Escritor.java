@@ -9,5 +9,12 @@ package vistas.terminal;
  * @author maris
  */
 public class Escritor {
-    
+
+  public Escritor() {
+
+  }
+
+  public void escribir(String texto) {
+    System.out.println(texto);
+  }
 }
