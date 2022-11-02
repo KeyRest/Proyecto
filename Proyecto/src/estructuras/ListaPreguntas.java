@@ -61,13 +61,16 @@ public class ListaPreguntas {
         
     }
     
+    //Recibe como parametro un entero 1, 2 o 3 segun el tipo de pregunta que se desea consultar
+    //Retorna un arreglo con unicamente las preguntas de dicho tipo
     public Pregunta[] mostrarPregunta(int tipoPregunta){ //tipoPregunta debe ser 1, 2 o 3
         Pregunta[] lista = {};
+        int tamano;
         
         switch(tipoPregunta){
             case 1: //Preguntas de verdadero/falso
                 
-                PreguntaVerdaderoFalso preguntaEjemplo;
+                PreguntaVerdaderoFalso preguntaEjemplo = null;
                 
                 for (Pregunta pregunta : lista) {            
                     if (pregunta instanceof PreguntaVerdaderoFalso){
@@ -75,7 +78,7 @@ public class ListaPreguntas {
                     }
                 }
                 
-                int tamano = (PreguntaVerdaderoFalso) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = (PreguntaVerdaderoFalso) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
                 
                 PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano];
                 
@@ -93,7 +96,7 @@ public class ListaPreguntas {
                 break;
             case 2: //Preguntas de seleccion unica
                 
-                PreguntaSeleccionUnica preguntaEjemplo;
+                PreguntaSeleccionUnica preguntaEjemplo = null;
                 
                 for (Pregunta pregunta : lista) {            
                     if (pregunta instanceof PreguntaSeleccionUnica){
@@ -101,7 +104,7 @@ public class ListaPreguntas {
                     }
                 }
                 
-                int tamano = (PreguntaSeleccionUnica) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = (PreguntaSeleccionUnica) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
                 
                 PreguntaSeleccionUnica[] listaSeleccionunica = new PreguntaSeleccionUnica[tamano];
                 
@@ -118,6 +121,30 @@ public class ListaPreguntas {
                 
                 break;
             case 3: //Preguntas de seleccion multiple
+                
+                PreguntaSeleccionMultiple preguntaEjemplo = null;
+                
+                for (Pregunta pregunta : lista) {            
+                    if (pregunta instanceof PreguntaSeleccionMultiple){
+                        preguntaEjemplo = pregunta;
+                    }
+                }
+                
+                tamano = (PreguntaSeleccionMultiple) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                
+                PreguntaSeleccionMultiple[] listaSeleccionMultiple = new PreguntaSeleccionMultiple[tamano];
+                
+                int contadorSeleccionMultiple = -1;
+                
+                for (Pregunta pregunta : lista) {            
+                    if (pregunta instanceof PreguntaSeleccionMultiple){
+                        contadorSeleccionMultiple ++;
+                        listaSeleccionMultiple[contadorSeleccionMultiple] = pregunta;
+                    }
+                }
+                
+                lista = listaSeleccionMultiple;
+                
                 break;
             default:
                 break;
@@ -126,8 +153,8 @@ public class ListaPreguntas {
         return lista;
     }
     
+    
     public void actualizarPregunta(){
-        
     }
     
     public void eliminarPregunta(){
