@@ -9,11 +9,14 @@ import modelo.PreguntaVerdaderoFalso;
 import modelo.PreguntaSeleccionUnica;
 import modelo.PreguntaSeleccionMultiple;
 import modelo.PreguntaCuatroOpciones;
+import modelo.Respuesta;
+import modelo.ValidadorPregunta;
 
 public class ListaPreguntas {
 
     private Pregunta[] lista;
     private int cantidadPreguntas = 0;
+    private ValidadorPregunta validador = new ValidadorPregunta();
 
     public ListaPreguntas() {
         this.lista = new Pregunta[15];
@@ -38,16 +41,19 @@ public class ListaPreguntas {
         lista = listaAux;
     }
 
-    public void insertarPregunta(String texto, String categoria, boolean respuesta) {
-        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta);
+    public int obtenerIdDesdeElUltimoElementoDelaLista() {
+        return lista.length;
+    }
+
+    public void insertarPregunta(String texto, String categoria, Respuesta respuesta1, Respuesta respuesta2) {
+        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, obtenerIdDesdeElUltimoElementoDelaLista(), respuesta1, respuesta2);
         this.agregar(pregunta);
 
     }
 
-    public void insertarPregunta(String texto, String categoria, String respuesta1,
-            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
-        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1,
-                respuesta2, respuesta3, respuesta4, opcionCorrecta);
+    public void insertarPregunta(String texto, String categoria, Respuesta respuesta1,
+        Respuesta respuesta2, Respuesta respuesta3, Respuesta respuesta4, int opcionCorrecta) {
+        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, opcionCorrecta, respuesta1, respuesta2, respuesta3, respuesta4);
         this.agregar(pregunta);
 
     }
@@ -218,8 +224,7 @@ public class ListaPreguntas {
     public void eliminarPregunta(int tipoPregunta, int id) {
 
         switch (tipoPregunta) {
-            
-            
+
             case 1:
                 for (int i = 0; i < lista.length; i++) {
                     if (lista[i] instanceof PreguntaVerdaderoFalso) {
