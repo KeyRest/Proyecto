@@ -18,10 +18,9 @@ public abstract class Pregunta {
     private final int SELECCION_MULTIPLE = 2;
     
     //Constructores
-    public Pregunta(String textoPregunta, String categoria, int tipoPregunta, int id) {
+    public Pregunta(String textoPregunta, String categoria, int id) {
         this.textoPregunta = textoPregunta;
         this.categoria = categoria;
-        this.tipoPregunta = tipoPregunta;
         this.id = id;
     }
 
