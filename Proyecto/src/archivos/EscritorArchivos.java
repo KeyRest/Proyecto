@@ -18,10 +18,7 @@ public class EscritorArchivos {
     public void escribir(Pregunta[] lista) throws IOException {
         if (lista != null) {
             for (Pregunta pregunta : lista) {
-                if (pregunta == null) {
-                    String linea = "null\n";
-                    escritor.write(linea);
-                } else {
+                if(pregunta!=null){
                     escritor.write(pregunta.toFileString() + "\n");
                 }
             }
