@@ -53,6 +53,7 @@ public class InterfazMenu {
                     + "5-Salir");
             opcion = lector.leerEntero();
             minMax = false;
+            
             switch (opcion) {
                 case 1:
                     while (minMax == false) {
@@ -76,6 +77,7 @@ public class InterfazMenu {
                             + "2-Selección Unica \n"
                             + "3-Selección Múltiple");
                     opcion = lector.leerEntero();
+                    minMax = false;
                     switch (opcion) {
                         case 1: //Pregunta verdadero o falso
                             escritor.escribir("La pregunta es: \n"
@@ -93,10 +95,12 @@ public class InterfazMenu {
                                     throw new AssertionError();
                             }
                             lista.insertarPregunta(pregunta, categoria, preguntaTrueOrFalse,contadorVF);
+                            minMax = false;
                             break;
                         case 2: //Pregunta Seleccion Unica
                             while (minMax == false) {
                                 escritor.escribir("Digite la respuesta 1");
+                                lector.leerString();
                                 resp1 = lector.leerString();
                                 minMax = validarLength(resp1, 1, 20);
                                 if (minMax == false) {
@@ -136,19 +140,25 @@ public class InterfazMenu {
                                             + " que 1 caracter y menor que 20 caracteres");
                                 }
                             }
-                            while (opcionCorrecta >= 1 && opcionCorrecta <= 4) {
+                            
+                            boolean opcionEntre1y4 = false;
+                            while (opcionEntre1y4 == false){
                                 escritor.escribir("Digite cual es la respuesta correcta | 1 ,2 ,3 o 4 |");
                                 opcionCorrecta = lector.leerEntero();
-
-                                if (opcionCorrecta < 1 && opcionCorrecta > 4) {
-                                    escritor.escribir("La respuesta correcta de ser 1 ,2 ,3 o 4");
+                                if((opcionCorrecta <= 0) || (opcionCorrecta >= 5)){
+                                    escritor.escribir("Debe ingresar un numero entre 1 y 4");
+                                } else{
+                                    opcionEntre1y4 = true;
                                 }
                             }
+                            
+
                             lista.insertarPregunta(pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta,contadorSU);
                             break;
                         case 3: //Pregunta Seleccion Multiple
                             while (minMax == false) {
                                 escritor.escribir("Digite la respuesta 1");
+                                lector.leerString();
                                 resp1 = lector.leerString();
                                 minMax = validarLength(resp1, 1, 20);
                                 if (minMax == false) {
@@ -156,20 +166,18 @@ public class InterfazMenu {
                                             + " que 1 caracter y menor que 20 caracteres");
                                 }
                             }
-                            while (valorResp1 == false) {
+                            
+                            boolean respValida = false;
+                            while (respValida == false) {
                                 escritor.escribir("La respuesta 1 es: \n"
                                         + "1-Falsa/ \n"
                                         + "2-Verdadera");
                                 opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp1 = false;
-                                        break;
-                                    case 2:
-                                        valorResp1 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                                
+                                if ((opcion == 1) || (opcion == 2)){
+                                    respValida = true;
+                                } else{
+                                    escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
                                 }
                             }
 
@@ -262,7 +270,7 @@ public class InterfazMenu {
                             escritor.escribir("Debe ingresar 1 , 2 o 3 segun corresponda");
                     }
                     break;
-
+/////////////////////////////////////////////////////////////////////////////////
                 case 2:
                     while (opcionValida == false) {
                         escritor.escribir("Ingrese el tipo de preguntas a mostrar: \n"
