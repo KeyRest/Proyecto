@@ -11,15 +11,9 @@ public class InterfazMenu {
     Escritor escritor;
     Lector lector;
     private final ListaPreguntas lista;
-    private int contadorVF;
-    private int contadorSU;
-    private int contadorSM;
 
     public InterfazMenu(ListaPreguntas lista, int contadorVF, int contadorSU, int contadorSM) {
         this.lista = lista;
-        this.contadorVF = contadorVF;
-        this.contadorVF = contadorSU;
-        this.contadorVF = contadorSM;
         this.escritor = new Escritor();
         this.lector = new Lector();
     }
@@ -116,7 +110,7 @@ public class InterfazMenu {
                     default ->
                         throw new AssertionError();
                 }
-                lista.insertarPregunta(pregunta, categoria, preguntaTrueOrFalse, contadorVF);
+                lista.insertarPregunta(pregunta, categoria, preguntaTrueOrFalse, lista.getContadorVF());
             }
             case 2 -> {
                 //Pregunta Seleccion Unica
@@ -136,7 +130,7 @@ public class InterfazMenu {
                     }
                 }
 
-                lista.insertarPregunta(pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta, contadorSU);
+                lista.insertarPregunta(pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta, lista.getContadorSU());
             }
 
             case 3 -> {
@@ -154,7 +148,7 @@ public class InterfazMenu {
                 resp4 = IntroducirRespDeOpcionMultiple(4);
                 valorResp4 = IntroducirValorRespDeOpcionMultiple(4);
 
-                lista.insertarPregunta(pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4, contadorSM);
+                lista.insertarPregunta(pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4, lista.getContadorSM());
             }
             default ->
                 escritor.escribir("Debe ingresar 1 , 2 o 3 segun corresponda");
@@ -477,10 +471,12 @@ public class InterfazMenu {
     private String IntroducirRespDeOpcionMultiple(int numeroRespuesta) {
         String textoRespuesta = "";
         boolean minMax = false;
+        
         while (minMax == false) {
             escritor.escribir("Digite el texto de la respuesta " + numeroRespuesta);
-            lector.leerString();
+            //lector.leerString();
             textoRespuesta = lector.leerString();
+            
             minMax = validarLength(textoRespuesta, 1, 20);
             if (minMax == false) {
                 escritor.escribir("La respuesta deber de ser mayor "
@@ -496,10 +492,8 @@ public class InterfazMenu {
 
         if (texto.length() < min) {
             minMax = false;
-        }
-
-        if (texto.length() > max) {
-            minMax = true;
+        } else if (texto.length() > max) {
+            minMax = false;
         }
 
         return minMax;

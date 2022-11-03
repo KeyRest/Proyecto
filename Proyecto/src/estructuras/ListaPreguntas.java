@@ -37,6 +37,20 @@ public class ListaPreguntas {
         this.lista = lista;
     }
 
+    public int getContadorSU() {
+        return contadorSU;
+    }
+
+    public int getContadorSM() {
+        return contadorSM;
+    }
+
+    public int getContadorVF() {
+        return contadorVF;
+    }
+    
+    
+
     public void agregar(Pregunta pregunta) {
 
         if (this.cantidadPreguntas == lista.length) {

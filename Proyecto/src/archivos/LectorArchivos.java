@@ -46,8 +46,6 @@ public class LectorArchivos {
 
         Pregunta[] listaLeida = new Pregunta[15];
         
-        System.out.println(tamano);
-        
         if (tamano > 0) {
             listaLeida = new Pregunta[tamano];
             int indiceLista = 0;
