@@ -45,15 +45,15 @@ public class ListaPreguntas {
         return lista.length;
     }
 
-    public void insertarPregunta(String texto, String categoria, Respuesta respuesta1, Respuesta respuesta2) {
-        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, obtenerIdDesdeElUltimoElementoDelaLista(), respuesta1, respuesta2);
+    public void insertarPregunta(String texto, String categoria, boolean respuesta) {
+        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta);
         this.agregar(pregunta);
 
     }
 
-    public void insertarPregunta(String texto, String categoria, Respuesta respuesta1,
-        Respuesta respuesta2, Respuesta respuesta3, Respuesta respuesta4, int opcionCorrecta) {
-        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, opcionCorrecta, respuesta1, respuesta2, respuesta3, respuesta4);
+    public void insertarPregunta(String texto, String categoria, String respuesta1,
+            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
+        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcionCorrecta);
         this.agregar(pregunta);
 
     }
@@ -74,19 +74,18 @@ public class ListaPreguntas {
     public Pregunta[] mostrarPregunta(int tipoPregunta) { //tipoPregunta debe ser 1, 2 o 3
         Pregunta[] lista = {};
         int tamano;
+        Pregunta preguntaEjemplo = null;
 
         switch (tipoPregunta) {
             case 1: //Preguntas de verdadero/falso
 
-                PreguntaVerdaderoFalso preguntaEjemplo = null;
-
                 for (Pregunta pregunta : lista) {
                     if (pregunta instanceof PreguntaVerdaderoFalso) {
-                        preguntaEjemplo = pregunta;
+                        preguntaEjemplo = (PreguntaVerdaderoFalso) pregunta;
                     }
                 }
 
-                tamano = (PreguntaVerdaderoFalso) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = ((PreguntaVerdaderoFalso) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
 
                 PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano];
 
@@ -104,24 +103,22 @@ public class ListaPreguntas {
                 break;
             case 2: //Preguntas de seleccion unica
 
-                PreguntaSeleccionUnica preguntaEjemplo = null;
-
                 for (Pregunta pregunta : lista) {
                     if (pregunta instanceof PreguntaSeleccionUnica) {
                         preguntaEjemplo = pregunta;
                     }
                 }
 
-                tamano = (PreguntaSeleccionUnica) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = ((PreguntaSeleccionUnica) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
 
-                PreguntaSeleccionUnica[] listaSeleccionunica = new PreguntaSeleccionUnica[tamano];
+                PreguntaSeleccionUnica[] listaSeleccionUnica = new PreguntaSeleccionUnica[tamano];
 
                 int contadorSeleccionUnica = -1;
 
                 for (Pregunta pregunta : lista) {
                     if (pregunta instanceof PreguntaSeleccionUnica) {
                         contadorSeleccionUnica++;
-                        listaSeleccionUnica[contadorSeleccionUnica] = pregunta;
+                        listaSeleccionUnica[contadorSeleccionUnica] = (PreguntaSeleccionUnica) pregunta;
                     }
                 }
 
@@ -130,15 +127,13 @@ public class ListaPreguntas {
                 break;
             case 3: //Preguntas de seleccion multiple
 
-                PreguntaSeleccionMultiple preguntaEjemplo = null;
-
                 for (Pregunta pregunta : lista) {
                     if (pregunta instanceof PreguntaSeleccionMultiple) {
                         preguntaEjemplo = pregunta;
                     }
                 }
 
-                tamano = (PreguntaSeleccionMultiple) preguntaEjemplo.getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = ((PreguntaSeleccionMultiple) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
 
                 PreguntaSeleccionMultiple[] listaSeleccionMultiple = new PreguntaSeleccionMultiple[tamano];
 
@@ -147,7 +142,7 @@ public class ListaPreguntas {
                 for (Pregunta pregunta : lista) {
                     if (pregunta instanceof PreguntaSeleccionMultiple) {
                         contadorSeleccionMultiple++;
-                        listaSeleccionMultiple[contadorSeleccionMultiple] = pregunta;
+                        listaSeleccionMultiple[contadorSeleccionMultiple] = (PreguntaSeleccionMultiple) pregunta;
                     }
                 }
 
@@ -169,13 +164,13 @@ public class ListaPreguntas {
 
                     lista[i].setTexto(texto);
                     lista[i].setCategoria(categoria);
-                    lista[i].setRespuesta(respuesta);
+                    ((PreguntaVerdaderoFalso) lista[i]).setRespuesta(respuesta);
                 }
             }
         }
     }
 
-    public void actualizarPregunta(int id,String texto, String categoria, String respuesta1,
+    public void actualizarPregunta(int id, String texto, String categoria, String respuesta1,
             String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
 
         for (int i = 0; i < lista.length; i++) {
@@ -184,18 +179,18 @@ public class ListaPreguntas {
 
                     lista[i].setTexto(texto);
                     lista[i].setCategoria(categoria);
-                    lista[i].setRespuesta1(respuesta1);
-                    lista[i].setRespuesta2(respuesta2);
-                    lista[i].setRespuesta3(respuesta3);
-                    lista[i].setRespuesta4(respuesta4);
-                    lista[i].setOpcionCorrecta(opcionCorrecta);
+                    ((PreguntaSeleccionUnica) lista[i]).setRespuesta1(respuesta1);
+                    ((PreguntaSeleccionUnica) lista[i]).setRespuesta2(respuesta2);
+                    ((PreguntaSeleccionUnica) lista[i]).setRespuesta3(respuesta3);
+                    ((PreguntaSeleccionUnica) lista[i]).setRespuesta4(respuesta4);
+                    ((PreguntaSeleccionUnica) lista[i]).setOpcionCorrecta(opcionCorrecta);
                 }
             }
         }
 
     }
 
-    public void actualizarPregunta(int id,String texto, String categoria, String respuesta1,
+    public void actualizarPregunta(int id, String texto, String categoria, String respuesta1,
             boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2,
             String respuesta3, boolean valorRespuesta3, String respuesta4,
             boolean valorRespuesta4) {
@@ -206,14 +201,14 @@ public class ListaPreguntas {
 
                     lista[i].setTexto(texto);
                     lista[i].setCategoria(categoria);
-                    lista[i].setRespuesta1(respuesta1);
-                    lista[i].setValorRespuesta1(valorRespuesta1);
-                    lista[i].setRespuesta2(respuesta2);
-                    lista[i].setValorRespuesta2(valorRespuesta2);
-                    lista[i].setRespuesta3(respuesta3);
-                    lista[i].setValorRespuesta3(valorRespuesta3);
-                    lista[i].setRespuesta4(respuesta4);
-                    lista[i].setValorRespuesta4(valorRespuesta4);
+                    ((PreguntaSeleccionMultiple) lista[i]).setRespuesta1(respuesta1);
+                    ((PreguntaSeleccionMultiple) lista[i]).setValorRespuesta1(valorRespuesta1);
+                    ((PreguntaSeleccionMultiple) lista[i]).setRespuesta2(respuesta2);
+                    ((PreguntaSeleccionMultiple) lista[i]).setValorRespuesta2(valorRespuesta2);
+                    ((PreguntaSeleccionMultiple) lista[i]).setRespuesta3(respuesta3);
+                    ((PreguntaSeleccionMultiple) lista[i]).setValorRespuesta3(valorRespuesta3);
+                    ((PreguntaSeleccionMultiple) lista[i]).setRespuesta4(respuesta4);
+                    ((PreguntaSeleccionMultiple) lista[i]).setValorRespuesta4(valorRespuesta4);
 
                 }
             }

@@ -1,4 +1,3 @@
-
 package modelo;
 
 /**
@@ -6,44 +5,45 @@ package modelo;
  * Castro López C21912
  * @version 1/11/2022
  */
-public class PreguntaVerdaderoFalso extends Pregunta{
+public class PreguntaVerdaderoFalso extends Pregunta {
 
-    private Respuesta respuesta1;
-    private Respuesta respuesta2;
-  
-    
-    public PreguntaVerdaderoFalso(){
-        this.setTipoPregunta(this.getSELECCION_UNICA());
-        
-    }
+    private boolean respuesta;
+    public static int contador = 0;
 
-    public PreguntaVerdaderoFalso(String textoPregunta, String categoria, int id, Respuesta respuesta1, Respuesta respuesta2) {
-        super(textoPregunta, categoria, id);
-        this.setTipoPregunta(this.getVERDADERO_FALSO());
-        this.respuesta1 = respuesta1;
-        this.respuesta2 = respuesta2;
-    }
-    
-    public Respuesta getRespuesta1() {
-        return respuesta1;
+    public PreguntaVerdaderoFalso(String textoPregunta, String categoria, boolean respuesta) {
+        super(textoPregunta, categoria);
+        this.id = contador;
+        this.respuesta = respuesta;
+        contador++;
     }
 
-    public void setRespuesta1(Respuesta respuesta1) {
-        this.respuesta1 = respuesta1;
+    public boolean getRespuesta() {
+        return respuesta;
     }
 
-    public Respuesta getRespuesta2() {
-        return respuesta2;
+    public void setRespuesta(boolean respuesta) {
+        this.respuesta = respuesta;
     }
 
-    public void setRespuesta2(Respuesta respuesta2) {
-        this.respuesta2 = respuesta2;
+    public String toFileString() {
+        return "";
     }
-    
-    
+
+    public static int getContador() {
+        return contador;
+    }
+
     @Override
-    public void toFileString() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean evaluarRespuesta() {
+        return false;
+    }
+
+    public boolean evaluarRespuesta(boolean respuestaUsuario) {
+        boolean valido = false;
+        if (respuestaUsuario == this.respuesta) {
+            valido = true;
+        }
+        return valido;
     }
 
 }

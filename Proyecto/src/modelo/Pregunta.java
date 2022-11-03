@@ -10,38 +10,30 @@ public abstract class Pregunta {
     // Variables
     private String textoPregunta;
     private String categoria;
-    private int tipoPregunta;
-    private static int id;
-    
-    private final int VERDADERO_FALSO = 0;
-    private final int SELECCION_UNICA = 1;
-    private final int SELECCION_MULTIPLE = 2;
-    
+    protected static int id;
+
+    private final String ENTRETENIMIENTO = "Entretenimiento";
+    private final String DEPORTE = "Deporte";
+    private final String HISTORIA = "Historia";
+
     //Constructores
-    public Pregunta(String textoPregunta, String categoria, int id) {
+    public Pregunta(String textoPregunta, String categoria) {
         this.textoPregunta = textoPregunta;
         this.categoria = categoria;
-        this.id = id;
     }
 
     public Pregunta() {
         this.textoPregunta = "";
         this.categoria = "";
-        this.tipoPregunta = 0;
-        this.id = 0;
     }
     // Getters
 
-    public String getTextoPregunta() {
+    public String getTexto() {
         return textoPregunta;
     }
 
     public String getCategoria() {
         return categoria;
-    }
-
-    public int getTipoPregunta() {
-        return tipoPregunta;
     }
 
     public int getId() {
@@ -57,32 +49,8 @@ public abstract class Pregunta {
         this.categoria = categoria;
     }
 
-    public void setTipoPregunta(int tipoPregunta) {
-        this.tipoPregunta = tipoPregunta;
-    }
+    public abstract boolean evaluarRespuesta();
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public abstract String  toFileString();
 
-    public int getVERDADERO_FALSO() {
-        return VERDADERO_FALSO;
-    }
-
-    public int getSELECCION_UNICA() {
-        return SELECCION_UNICA;
-    }
-
-    public int getSELECCION_MULTIPLE() {
-        return SELECCION_MULTIPLE;
-    }
-    
-   
-
-    public abstract void toFileString();
-
-    @Override
-    public String toString() {
-        return "Pregunta{" + "textoPregunta=" + textoPregunta + ", categoria=" + categoria + ", tipoPregunta=" + tipoPregunta + ", id=" + id + '}';
-    }
 }

@@ -7,20 +7,45 @@ package modelo;
  */
 public class PreguntaSeleccionUnica extends PreguntaCuatroOpciones {
 
-    public PreguntaSeleccionUnica(String textoPregunta, String categoria, int id, Respuesta respuesta1, Respuesta respuesta2, 
-            Respuesta respuesta3, Respuesta respuesta4) {
-        super(textoPregunta, categoria, id);
-        this.setTipoPregunta(this.getSELECCION_UNICA());
-        this.setRespuesta1(respuesta1); 
-        this.setRespuesta2(respuesta2);
-        this.setRespuesta3(respuesta3);
-        this.setRespuesta4(respuesta4);
+    private int opcionCorrecta;
+    public static int contador = 0;
+
+    public PreguntaSeleccionUnica(String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
+        super(textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
+        this.opcionCorrecta = opcionCorrecta;
+        this.id = contador;
+        contador++;
     }
-   
-    
+
+    public int getOpcionCorrecta() {
+        return opcionCorrecta;
+    }
+
+    public void setOpcionCorrecta(int opcionCorrecta) {
+        this.opcionCorrecta = opcionCorrecta;
+    }
+
+    public static int getContador() {
+        return contador;
+    }
+
     @Override
-    public void toFileString() {
+    public String toFileString() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean evaluarRespuesta() {
+        return false;
+    }
+
+    public boolean evaluarRespuesta(int opcionUsuario) {
+        boolean valido = false;
+
+        if (opcionUsuario == opcionCorrecta) {
+            valido = true;
+        }
+        return valido;
     }
 
 }
