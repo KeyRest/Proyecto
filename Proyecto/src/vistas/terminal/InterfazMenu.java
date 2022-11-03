@@ -1,545 +1,58 @@
+/**
+ *
+ * @author Keiron Garro  C23212
+ */
 package vistas.terminal;
 
 import estructuras.ListaPreguntas;
 import modelo.Pregunta;
 
-/**
- *
- * @author Keiron Garro Matamoros C23212
- */
 public class InterfazMenu {
 
-    private int opcion;
-    private int opcion2;
-    private String pregunta = "";
-    private String categoria;
-    private boolean minMax = false;
-    private boolean preguntaTrueOrFalse;
-    private String resp1 = "";
-    private String resp2 = "";
-    private String resp3 = "";
-    private String resp4 = "";
-    private int opcionCorrecta = 0;
-    private boolean opcionValida = false;
-    private boolean valorResp1 = false;
-    private boolean valorResp2 = false;
-    private boolean valorResp3 = false;
-    private boolean valorResp4 = false;
-    private boolean activo = true;
+    Escritor escritor;
+    Lector lector;
+    private ListaPreguntas lista;
+    private int contadorVF;
+    private int contadorSU;
+    private int contadorSM;
 
-    private boolean validarLength(String texto, int min, int max) {
-        boolean minMax;
-        if (texto.length() < min || texto.length() > max) {
-            minMax = false;
-        } else {
-            minMax = true;
-        }
-
-        return minMax;
+    public InterfazMenu(ListaPreguntas lista, int contadorVF, int contadorSU, int contadorSM) {
+        this.lista = lista;
+        this.contadorVF = contadorVF;
+        this.contadorVF = contadorSU;
+        this.contadorVF = contadorSM;
+        this.escritor = new Escritor();
+        this.lector = new Lector();
     }
 
-    public void iniciarMenu(ListaPreguntas lista, int contadorVF, int contadorSU, int contadorSM) {
-
-        Escritor escritor = new Escritor();
-        Lector lector = new Lector();
-        activo = true;
+    public void iniciarMenu() {
+        int opcion;
+        boolean activo = true;
+        
         escritor.escribir("Bienvenido al CRUD");
         while (activo) {
-            escritor.escribir("Seleccione una opcion: \n"
-                    + "1-Insertar \n"
-                    + "2-Mostrar \n"
-                    + "3-Actualizar \n"
-                    + "4-Eliminar \n"
-                    + "5-Salir");
+            escritor.escribir("""
+                              Seleccione una opcion: 
+                              1-Insertar 
+                              2-Mostrar 
+                              3-Actualizar 
+                              4-Eliminar 
+                              5-Salir""");
             opcion = lector.leerEntero();
-            minMax = false;
             
+
             switch (opcion) {
-                case 1:
-                    while (minMax == false) {
-                        escritor.escribir("Ingrese el texto de la pregunta");
-                        lector.leerString();
-                        pregunta = lector.leerString();
-                        minMax = validarLength(pregunta, 4, 50);
-                        if (minMax == false) {
-                            escritor.escribir("La pregunta deber de ser mayor "
-                                    + " de 4 caracteres y menor que 50 caracteres");
-                        }
-                    }
-                    escritor.escribir("De que categoria es la pregunta?: \n"
-                            + "1-Deporte \n"
-                            + "2-Entretenimiento \n"
-                            + "3-Historia");
-                    categoria = lector.leerString();
-
-                    escritor.escribir("De que tipo es la pregunta?: \n"
-                            + "1-Falso/Verdadero \n"
-                            + "2-Selección Unica \n"
-                            + "3-Selección Múltiple");
-                    opcion = lector.leerEntero();
-                    minMax = false;
-                    switch (opcion) {
-                        case 1: //Pregunta verdadero o falso
-                            escritor.escribir("La pregunta es: \n"
-                                    + "1-Falsa/ \n"
-                                    + "2-Verdadera");
-                            opcion = lector.leerEntero();
-                            switch (opcion) {
-                                case 1:
-                                    preguntaTrueOrFalse = false;
-                                    break;
-                                case 2:
-                                    preguntaTrueOrFalse = true;
-                                    break;
-                                default:
-                                    throw new AssertionError();
-                            }
-                            lista.insertarPregunta(pregunta, categoria, preguntaTrueOrFalse,contadorVF);
-                            minMax = false;
-                            break;
-                        case 2: //Pregunta Seleccion Unica
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 1");
-                                lector.leerString();
-                                resp1 = lector.leerString();
-                                minMax = validarLength(resp1, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 2");
-                                resp2 = lector.leerString();
-                                minMax = validarLength(resp2, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 3");
-                                resp3 = lector.leerString();
-                                minMax = validarLength(resp3, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 4");
-                                resp4 = lector.leerString();
-                                minMax = validarLength(resp4, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            
-                            boolean opcionEntre1y4 = false;
-                            while (opcionEntre1y4 == false){
-                                escritor.escribir("Digite cual es la respuesta correcta | 1 ,2 ,3 o 4 |");
-                                opcionCorrecta = lector.leerEntero();
-                                if((opcionCorrecta <= 0) || (opcionCorrecta >= 5)){
-                                    escritor.escribir("Debe ingresar un numero entre 1 y 4");
-                                } else{
-                                    opcionEntre1y4 = true;
-                                }
-                            }
-                            
-
-                            lista.insertarPregunta(pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta,contadorSU);
-                            break;
-                        case 3: //Pregunta Seleccion Multiple
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 1");
-                                lector.leerString();
-                                resp1 = lector.leerString();
-                                minMax = validarLength(resp1, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            
-                            boolean respValida = false;
-                            while (respValida == false) {
-                                escritor.escribir("La respuesta 1 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                
-                                if ((opcion == 1) || (opcion == 2)){
-                                    respValida = true;
-                                } else{
-                                    escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 2");
-                                resp2 = lector.leerString();
-                                minMax = validarLength(resp2, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp2 == false) {
-                                escritor.escribir("La respuesta 2 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp2 = false;
-                                        break;
-                                    case 2:
-                                        valorResp2 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 3");
-                                resp3 = lector.leerString();
-                                minMax = validarLength(resp3, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp3 == false) {
-                                escritor.escribir("La respuesta 3 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp3 = false;
-                                        break;
-                                    case 2:
-                                        valorResp3 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la respuesta 4");
-                                resp4 = lector.leerString();
-                                minMax = validarLength(resp4, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp4 == false) {
-                                escritor.escribir("La respuesta 4 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp4 = false;
-                                        break;
-                                    case 2:
-                                        valorResp4 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-                            lista.insertarPregunta(pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4, contadorSM);
-                            break;
-                        default:
-                            escritor.escribir("Debe ingresar 1 , 2 o 3 segun corresponda");
-                    }
+                case 1: //INSERTAR PREGUNTA
+                    insertarPregunta();
                     break;
-/////////////////////////////////////////////////////////////////////////////////
-                case 2:
-                    while (opcionValida == false) {
-                        escritor.escribir("Ingrese el tipo de preguntas a mostrar: \n"
-                                + "1-Falso/Verdadero \n"
-                                + "2-Selección Unica \n"
-                                + "3-Selección Múltiple");
-                        opcion = lector.leerEntero();
-                        if (opcion >= 1 && opcion <= 3) {
-                            opcionValida = true;
-                        } else {
-                            escritor.escribir("Solo puede ingresar 1 , 2 o 3");
-                        }
-                    }
-                    for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
-                        escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
-                    }
-                    escritor.escribir("Seleccione la pregunta de la cual desea mas informacion");
-                    opcion2 = lector.leerEntero() - 1;
-                    lista.mostrarPregunta(opcion)[opcion2].toString();
+                case 2: //MOSTRAR PREGUNTA
+                    mostrarPregunta();
                     break;
-
-                case 3:
-                    while (opcionValida == false) {
-                        escritor.escribir("Ingrese el tipo de preguntas a actualizar: \n"
-                                + "1-Falso/Verdadero \n"
-                                + "2-Selección Unica \n"
-                                + "3-Selección Múltiple");
-                        opcion = lector.leerEntero();
-                        if (opcion >= 1 && opcion <= 3) {
-                            opcionValida = true;
-                        } else {
-                            escritor.escribir("Solo puede ingresar 1 , 2 o 3");
-                        }
-                    }
-
-                    for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
-                        escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
-                    }
-                    escritor.escribir("Seleccione la pregunta a actualizar");
-                    opcion2 = lector.leerEntero() - 1;
-                    lista.mostrarPregunta(opcion)[opcion2].toString();
-
-                    while (minMax == false) {
-                        escritor.escribir("Ingrese el nuevo texto de la pregunta");
-                        pregunta = lector.leerString();
-                        minMax = validarLength(pregunta, 4, 50);
-                        if (minMax == false) {
-                            escritor.escribir("La pregunta deber de ser mayor "
-                                    + " de 4 caracteres y menor que 50 caracteres");
-                        }
-                    }
-                    escritor.escribir("Ingrese la categoria nueva de la pregunta: \n"
-                            + "1-Deporte \n"
-                            + "2-Entretenimiento \n"
-                            + "3-Historia");
-                    categoria = lector.leerString();
-
-                    switch (opcion) {
-                        case 1: //Pregunta verdadero o falso
-                            escritor.escribir("La pregunta es: \n"
-                                    + "1-Falsa/ \n"
-                                    + "2-Verdadera");
-                            opcion = lector.leerEntero();
-                            switch (opcion) {
-                                case 1:
-                                    preguntaTrueOrFalse = false;
-                                    break;
-                                case 2:
-                                    preguntaTrueOrFalse = true;
-                                    break;
-                                default:
-                                    throw new AssertionError();
-                            }
-                            lista.actualizarPregunta(
-                                    lista.mostrarPregunta(opcion)[opcion2].getId(),
-                                    pregunta, categoria, preguntaTrueOrFalse);
-                            break;
-
-                        case 2:
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 1");
-                                resp1 = lector.leerString();
-                                minMax = validarLength(resp1, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 2");
-                                resp2 = lector.leerString();
-                                minMax = validarLength(resp2, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 3");
-                                resp3 = lector.leerString();
-                                minMax = validarLength(resp3, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 4");
-                                resp4 = lector.leerString();
-                                minMax = validarLength(resp4, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            while (opcionCorrecta >= 1 && opcionCorrecta <= 4) {
-                                escritor.escribir("Digite cual es la nueva respuesta correcta | 1 ,2 ,3 o 4 |");
-                                opcionCorrecta = lector.leerEntero();
-
-                                if (opcionCorrecta < 1 && opcionCorrecta > 4) {
-                                    escritor.escribir("La respuesta correcta de ser 1 ,2 ,3 o 4");
-                                }
-                            }
-                            lista.actualizarPregunta(lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta);
-                            break;
-                        case 3:
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 1");
-                                resp1 = lector.leerString();
-                                minMax = validarLength(resp1, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-                            while (valorResp1 == false) {
-                                escritor.escribir("La nueva respuesta 1 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp1 = false;
-                                        break;
-                                    case 2:
-                                        valorResp1 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 2");
-                                resp2 = lector.leerString();
-                                minMax = validarLength(resp2, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp2 == false) {
-                                escritor.escribir("La respuesta 2 nueva es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp2 = false;
-                                        break;
-                                    case 2:
-                                        valorResp2 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 3");
-                                resp3 = lector.leerString();
-                                minMax = validarLength(resp3, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp3 == false) {
-                                escritor.escribir("La nueva respuesta 3 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp3 = false;
-                                        break;
-                                    case 2:
-                                        valorResp3 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-
-                            minMax = false;
-                            while (minMax == false) {
-                                escritor.escribir("Digite la nueva respuesta 4");
-                                resp4 = lector.leerString();
-                                minMax = validarLength(resp4, 1, 20);
-                                if (minMax == false) {
-                                    escritor.escribir("La respuesta deber de ser mayor "
-                                            + " que 1 caracter y menor que 20 caracteres");
-                                }
-                            }
-
-                            while (valorResp4 == false) {
-                                escritor.escribir("La nueva respuesta 4 es: \n"
-                                        + "1-Falsa/ \n"
-                                        + "2-Verdadera");
-                                opcion = lector.leerEntero();
-                                switch (opcion) {
-                                    case 1:
-                                        valorResp4 = false;
-                                        break;
-                                    case 2:
-                                        valorResp4 = true;
-                                        break;
-                                    default:
-                                        escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
-                                }
-                            }
-                            lista.actualizarPregunta(lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4);
-                            break;
-                        default:
-                            System.out.println("Ingrese un valor correcto");
-
-                    }
-
+                case 3: //ACTUALIZAR PREGUNTA
+                    actualizarPregunta();
                     break;
                 case 4:
-                    while (opcionValida == false) {
-                        escritor.escribir("Ingrese el tipo de preguntas a actualizar: \n"
-                                + "1-Falso/Verdadero \n"
-                                + "2-Selección Unica \n"
-                                + "3-Selección Múltiple");
-                        opcion = lector.leerEntero();
-                        if (opcion >= 1 && opcion <= 3) {
-                            opcionValida = true;
-                        } else {
-                            escritor.escribir("Solo puede ingresar 1 , 2 o 3");
-                        }
-                    }
-
-                    for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
-                        escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
-                    }
-                    escritor.escribir("Seleccione la pregunta a actualizar");
-                    opcion2 = lector.leerEntero() - 1;
-                    lista.mostrarPregunta(opcion)[opcion2].toString();
-                    lista.eliminarPregunta(opcion, lista.mostrarPregunta(opcion)[opcion2].getId());
+                    eliminarPregunta();
                     break;
 
                 case 5:
@@ -550,4 +63,470 @@ public class InterfazMenu {
             }
         }
     }
+
+    private void insertarPregunta() {
+
+        String pregunta = "";
+        String categoria;
+
+        String resp1;
+        String resp2;
+        String resp3;
+        String resp4;
+
+        boolean valorResp1;
+        boolean valorResp2;
+        boolean valorResp3;
+        boolean valorResp4;
+
+        boolean minMax = false;
+        int opcion;
+        int opcionCorrecta = 1;
+        boolean preguntaTrueOrFalse;
+
+        while (minMax == false) {
+            escritor.escribir("Ingrese el texto de la pregunta");
+            lector.leerString();
+            pregunta = lector.leerString();
+            minMax = validarLength(pregunta, 4, 50);
+            if (minMax == false) {
+                escritor.escribir("La pregunta deber de ser mayor "
+                        + " de 4 caracteres y menor que 50 caracteres");
+            }
+        }
+
+        escritor.escribir("""
+                          De que categoria es la pregunta?: 
+                          1-Deporte 
+                          2-Entretenimiento 
+                          3-Historia""");
+        categoria = lector.leerString();
+
+        escritor.escribir("""
+                          De que tipo es la pregunta?: 
+                          1-Falso/Verdadero 
+                          2-Selecci\u00f3n Unica 
+                          3-Selecci\u00f3n M\u00faltiple""");
+        opcion = lector.leerEntero();
+
+        switch (opcion) {
+            case 1 -> {
+                //Pregunta verdadero o falso
+                escritor.escribir("""
+                                  La pregunta es: 
+                                  1-Falsa/ 
+                                  2-Verdadera""");
+                opcion = lector.leerEntero();
+                switch (opcion) {
+                    case 1 ->
+                        preguntaTrueOrFalse = false;
+                    case 2 ->
+                        preguntaTrueOrFalse = true;
+                    default ->
+                        throw new AssertionError();
+                }
+                lista.insertarPregunta(pregunta, categoria, preguntaTrueOrFalse, contadorVF);
+            }
+            case 2 -> {
+                //Pregunta Seleccion Unica
+                resp1 = IntroducirRespDeOpcionMultiple(1);
+                resp2 = IntroducirRespDeOpcionMultiple(2);
+                resp3 = IntroducirRespDeOpcionMultiple(3);
+                resp4 = IntroducirRespDeOpcionMultiple(4);
+
+                boolean opcionEntre1y4 = false;
+                while (opcionEntre1y4 == false) {
+                    escritor.escribir("Digite cual es la respuesta correcta | 1 ,2 ,3 o 4 |");
+                    opcionCorrecta = lector.leerEntero();
+                    if ((opcionCorrecta <= 0) || (opcionCorrecta >= 5)) {
+                        escritor.escribir("Debe ingresar un numero entre 1 y 4");
+                    } else {
+                        opcionEntre1y4 = true;
+                    }
+                }
+
+                lista.insertarPregunta(pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta, contadorSU);
+            }
+
+            case 3 -> {
+                //Pregunta Seleccion Multiple
+
+                resp1 = IntroducirRespDeOpcionMultiple(1);
+                valorResp1 = IntroducirValorRespDeOpcionMultiple(1);
+
+                resp2 = IntroducirRespDeOpcionMultiple(2);
+                valorResp2 = IntroducirValorRespDeOpcionMultiple(2);
+
+                resp3 = IntroducirRespDeOpcionMultiple(3);
+                valorResp3 = IntroducirValorRespDeOpcionMultiple(3);
+
+                resp4 = IntroducirRespDeOpcionMultiple(4);
+                valorResp4 = IntroducirValorRespDeOpcionMultiple(4);
+
+                lista.insertarPregunta(pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4, contadorSM);
+            }
+            default ->
+                escritor.escribir("Debe ingresar 1 , 2 o 3 segun corresponda");
+        }
+    }
+
+    private void mostrarPregunta() {
+        boolean opcionValida = false;
+        int opcion = 0;
+        int opcion2 = 0;
+
+        while (opcionValida == false) {
+            escritor.escribir("Ingrese el tipo de preguntas a mostrar: \n"
+                    + "1-Falso/Verdadero \n"
+                    + "2-Selección Unica \n"
+                    + "3-Selección Múltiple");
+            opcion = lector.leerEntero();
+            if (opcion >= 1 && opcion <= 3) {
+                opcionValida = true;
+            } else {
+                escritor.escribir("Solo puede ingresar 1 , 2 o 3");
+            }
+        }
+        for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
+            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+        }
+        escritor.escribir("Seleccione la pregunta de la cual desea mas informacion");
+        opcion2 = lector.leerEntero() - 1;
+        lista.mostrarPregunta(opcion)[opcion2].toString();
+    }
+
+    private void actualizarPregunta() {
+
+        String pregunta = "";
+        String categoria;
+
+        String resp1 = "";
+        String resp2 = "";
+        String resp3 = "";
+        String resp4 = "";
+
+        boolean valorResp1 = false;
+        boolean valorResp2 = false;
+        boolean valorResp3 = false;
+        boolean valorResp4 = false;
+
+        boolean minMax = false;
+        int opcion = 0;
+        int opcion2 = 0;
+        int opcionCorrecta = 1;
+        boolean preguntaTrueOrFalse;
+
+        boolean opcionValida = false;
+        while (opcionValida == false) {
+            escritor.escribir("Ingrese el tipo de preguntas a actualizar: \n"
+                    + "1-Falso/Verdadero \n"
+                    + "2-Selección Unica \n"
+                    + "3-Selección Múltiple");
+            opcion = lector.leerEntero();
+            if (opcion >= 1 && opcion <= 3) {
+                opcionValida = true;
+            } else {
+                escritor.escribir("Solo puede ingresar 1 , 2 o 3");
+            }
+        }
+
+        for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
+            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+        }
+        escritor.escribir("Seleccione la pregunta a actualizar");
+        opcion2 = lector.leerEntero() - 1;
+        lista.mostrarPregunta(opcion)[opcion2].toString();
+
+        while (minMax == false) {
+            escritor.escribir("Ingrese el nuevo texto de la pregunta");
+            pregunta = lector.leerString();
+            minMax = validarLength(pregunta, 4, 50);
+            if (minMax == false) {
+                escritor.escribir("La pregunta deber de ser mayor "
+                        + " de 4 caracteres y menor que 50 caracteres");
+            }
+        }
+        escritor.escribir("Ingrese la categoria nueva de la pregunta: \n"
+                + "1-Deporte \n"
+                + "2-Entretenimiento \n"
+                + "3-Historia");
+        categoria = lector.leerString();
+
+        switch (opcion) {
+            case 1: //Pregunta verdadero o falso
+                escritor.escribir("La pregunta es: \n"
+                        + "1-Falsa/ \n"
+                        + "2-Verdadera");
+                opcion = lector.leerEntero();
+                switch (opcion) {
+                    case 1:
+                        preguntaTrueOrFalse = false;
+                        break;
+                    case 2:
+                        preguntaTrueOrFalse = true;
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                lista.actualizarPregunta(
+                        lista.mostrarPregunta(opcion)[opcion2].getId(),
+                        pregunta, categoria, preguntaTrueOrFalse);
+                break;
+
+            case 2: //Pregunta seleccion unica
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 1");
+                    resp1 = lector.leerString();
+                    minMax = validarLength(resp1, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 2");
+                    resp2 = lector.leerString();
+                    minMax = validarLength(resp2, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 3");
+                    resp3 = lector.leerString();
+                    minMax = validarLength(resp3, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 4");
+                    resp4 = lector.leerString();
+                    minMax = validarLength(resp4, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+                while (opcionCorrecta >= 1 && opcionCorrecta <= 4) {
+                    escritor.escribir("Digite cual es la nueva respuesta correcta | 1 ,2 ,3 o 4 |");
+                    opcionCorrecta = lector.leerEntero();
+
+                    if (opcionCorrecta < 1 && opcionCorrecta > 4) {
+                        escritor.escribir("La respuesta correcta de ser 1 ,2 ,3 o 4");
+                    }
+                }
+                lista.actualizarPregunta(lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, resp1, resp2, resp3, resp4, opcionCorrecta);
+                break;
+            case 3:
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 1");
+                    resp1 = lector.leerString();
+                    minMax = validarLength(resp1, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+                while (valorResp1 == false) {
+                    escritor.escribir("La nueva respuesta 1 es: \n"
+                            + "1-Falsa/ \n"
+                            + "2-Verdadera");
+                    opcion = lector.leerEntero();
+                    switch (opcion) {
+                        case 1:
+                            valorResp1 = false;
+                            break;
+                        case 2:
+                            valorResp1 = true;
+                            break;
+                        default:
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                    }
+                }
+
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 2");
+                    resp2 = lector.leerString();
+                    minMax = validarLength(resp2, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+
+                while (valorResp2 == false) {
+                    escritor.escribir("La respuesta 2 nueva es: \n"
+                            + "1-Falsa/ \n"
+                            + "2-Verdadera");
+                    opcion = lector.leerEntero();
+                    switch (opcion) {
+                        case 1:
+                            valorResp2 = false;
+                            break;
+                        case 2:
+                            valorResp2 = true;
+                            break;
+                        default:
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                    }
+                }
+
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 3");
+                    resp3 = lector.leerString();
+                    minMax = validarLength(resp3, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+
+                while (valorResp3 == false) {
+                    escritor.escribir("La nueva respuesta 3 es: \n"
+                            + "1-Falsa/ \n"
+                            + "2-Verdadera");
+                    opcion = lector.leerEntero();
+                    switch (opcion) {
+                        case 1:
+                            valorResp3 = false;
+                            break;
+                        case 2:
+                            valorResp3 = true;
+                            break;
+                        default:
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                    }
+                }
+
+                minMax = false;
+                while (minMax == false) {
+                    escritor.escribir("Digite la nueva respuesta 4");
+                    resp4 = lector.leerString();
+                    minMax = validarLength(resp4, 1, 20);
+                    if (minMax == false) {
+                        escritor.escribir("La respuesta deber de ser mayor "
+                                + " que 1 caracter y menor que 20 caracteres");
+                    }
+                }
+
+                while (valorResp4 == false) {
+                    escritor.escribir("La nueva respuesta 4 es: \n"
+                            + "1-Falsa/ \n"
+                            + "2-Verdadera");
+                    opcion = lector.leerEntero();
+                    switch (opcion) {
+                        case 1:
+                            valorResp4 = false;
+                            break;
+                        case 2:
+                            valorResp4 = true;
+                            break;
+                        default:
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                    }
+                }
+                lista.actualizarPregunta(lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4);
+                break;
+            default:
+                System.out.println("Ingrese un valor correcto");
+
+        }
+    }
+
+    private void eliminarPregunta() {
+        
+        int opcion = 1;
+        int opcion2 = 1;
+        
+        boolean opcionValida = false;
+        while (opcionValida == false) {
+            escritor.escribir("Ingrese el tipo de preguntas a eliminar: \n"
+                    + "1-Falso/Verdadero \n"
+                    + "2-Selección Unica \n"
+                    + "3-Selección Múltiple");
+            opcion = lector.leerEntero();
+            if (opcion >= 1 && opcion <= 3) {
+                opcionValida = true;
+            } else {
+                escritor.escribir("Solo puede ingresar 1 , 2 o 3");
+            }
+        }
+
+        for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
+            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+        }
+        escritor.escribir("Seleccione la pregunta a eliminar");
+        opcion2 = lector.leerEntero() - 1;
+        lista.mostrarPregunta(opcion)[opcion2].toString();
+        lista.eliminarPregunta(opcion, lista.mostrarPregunta(opcion)[opcion2].getId());
+    }
+
+    private boolean IntroducirValorRespDeOpcionMultiple(int numeroRespuesta) {
+        boolean respuesta = false;
+        boolean respValida = false;
+
+        while (respValida == false) {
+            escritor.escribir("La respuesta " + numeroRespuesta + " es: \n"
+                    + "1-Falsa/ \n"
+                    + "2-Verdadera");
+            int opcion = lector.leerEntero();
+
+            switch (opcion) {
+                case 1 -> {
+                    respuesta = false;
+                    respValida = true;
+                }
+                case 2 -> {
+                    respuesta = true;
+                    respValida = true;
+                }
+                default ->
+                    escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+            }
+        }
+
+        return respuesta;
+    }
+
+    private String IntroducirRespDeOpcionMultiple(int numeroRespuesta) {
+        String textoRespuesta = "";
+        boolean minMax = false;
+        while (minMax == false) {
+            escritor.escribir("Digite el texto de la respuesta " + numeroRespuesta);
+            lector.leerString();
+            textoRespuesta = lector.leerString();
+            minMax = validarLength(textoRespuesta, 1, 20);
+            if (minMax == false) {
+                escritor.escribir("La respuesta deber de ser mayor "
+                        + " que 1 caracter y menor que 20 caracteres");
+            }
+        }
+
+        return textoRespuesta;
+    }
+
+    private boolean validarLength(String texto, int min, int max) {
+        boolean minMax = true;
+
+        if (texto.length() < min) {
+            minMax = false;
+        }
+
+        if (texto.length() > max) {
+            minMax = true;
+        }
+
+        return minMax;
+    }
+
 }
