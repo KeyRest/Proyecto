@@ -46,8 +46,9 @@ public class InterfazMenu {
         escritor.escribir("Seleccione una opcion: \n"
                 + "1-Insertar \n"
                 + "2-Mostrar \n"
-                + "3-Eliminar \n"
-                + "4-Salir");
+                + "3-Actualizar \n"
+                + "4-Eliminar \n"
+                + "5-Salir");
         opcion = lector.leerEntero();
         minMax = false;
         switch (opcion) {
@@ -508,7 +509,26 @@ public class InterfazMenu {
 
                 break;
             case 4:
+                while (opcionValida == false) {
+                    escritor.escribir("Ingrese el tipo de preguntas a actualizar: \n"
+                            + "1-Falso/Verdadero \n"
+                            + "2-Selección Unica \n"
+                            + "3-Selección Múltiple");
+                    opcion = lector.leerEntero();
+                    if (opcion >= 1 && opcion <= 3) {
+                        opcionValida = true;
+                    } else {
+                        escritor.escribir("Solo puede ingresar 1 , 2 o 3");
+                    }
+                }
 
+                for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
+                    escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+                }
+                escritor.escribir("Seleccione la pregunta a actualizar");
+                opcion2 = lector.leerEntero() - 1;
+                lista.mostrarPregunta(opcion)[opcion2].toString();
+                lista.eliminarPregunta(opcion, lista.mostrarPregunta(opcion)[opcion2].getId());
                 break;
             default:
                 throw new AssertionError();
