@@ -10,16 +10,19 @@ public abstract class Pregunta {
     // Variables
     protected String textoPregunta;
     protected String categoria;
-    protected static int id;
+    protected int id;
+    protected String tipo;
 
     private final String ENTRETENIMIENTO = "Entretenimiento";
     private final String DEPORTE = "Deporte";
     private final String HISTORIA = "Historia";
 
     //Constructores
-    public Pregunta(String textoPregunta, String categoria) {
+    public Pregunta(String tipo, String textoPregunta, String categoria) {
+        this.tipo = tipo;
         this.textoPregunta = textoPregunta;
         this.categoria = categoria;
+
     }
 
     public Pregunta() {
@@ -51,6 +54,6 @@ public abstract class Pregunta {
 
     public abstract boolean evaluarRespuesta();
 
-    public abstract String  toFileString();
+    public abstract String toFileString();
 
 }

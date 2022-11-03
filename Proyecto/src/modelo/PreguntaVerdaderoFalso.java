@@ -8,13 +8,12 @@ package modelo;
 public class PreguntaVerdaderoFalso extends Pregunta {
 
     private boolean respuesta;
-    public static int contador = 0;
+    public int contador;
 
-    public PreguntaVerdaderoFalso(String textoPregunta, String categoria, boolean respuesta) {
-        super(textoPregunta, categoria);
-        this.id = contador;
+    public PreguntaVerdaderoFalso(String textoPregunta, String categoria, boolean respuesta, int contador) {
+        super("VF", textoPregunta, categoria);
+        this.id = contador + 1;
         this.respuesta = respuesta;
-        contador++;
     }
 
     public boolean getRespuesta() {
@@ -25,19 +24,17 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         this.respuesta = respuesta;
     }
 
+    public int getContador() {
+        return contador;
+    }
+
     @Override
     public String toFileString() {
-        return id + "-" + textoPregunta + "-" + categoria + "-" + respuesta;
+        return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta;
     }
 
     public void setContador(int contador) {
         this.contador = contador;
-    }
-    
-    
-
-    public static int getContador() {
-        return contador;
     }
 
     @Override

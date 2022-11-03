@@ -8,13 +8,12 @@ package modelo;
 public class PreguntaSeleccionUnica extends PreguntaCuatroOpciones {
 
     private int opcionCorrecta;
-    public static int contador = 0;
+    public int contador;
 
-    public PreguntaSeleccionUnica(String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
-        super(textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
+    public PreguntaSeleccionUnica(String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) {
+        super("SU",textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
         this.opcionCorrecta = opcionCorrecta;
-        this.id = contador;
-        contador++;
+        this.id = contador+1;        
     }
 
     public int getOpcionCorrecta() {
@@ -24,14 +23,14 @@ public class PreguntaSeleccionUnica extends PreguntaCuatroOpciones {
     public void setOpcionCorrecta(int opcionCorrecta) {
         this.opcionCorrecta = opcionCorrecta;
     }
-
-    public static int getContador() {
+     public int getContador() {
         return contador;
     }
 
+
     @Override
     public String toFileString() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta1 + "-" + respuesta2 + "-" + respuesta3 + "-" + respuesta4 + "-" + opcionCorrecta;
     }
 
     @Override

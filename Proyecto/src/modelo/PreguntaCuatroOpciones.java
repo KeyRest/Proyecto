@@ -7,13 +7,13 @@ package modelo;
  */
 public abstract class PreguntaCuatroOpciones extends Pregunta {
 
-    private String respuesta1;
-    private String respuesta2;
-    private String respuesta3;
-    private String respuesta4;
+    protected String respuesta1;
+    protected String respuesta2;
+    protected String respuesta3;
+    protected String respuesta4;
 
-    public PreguntaCuatroOpciones(String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4) {
-        super(textoPregunta, categoria);
+    public PreguntaCuatroOpciones(String tipo,String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4) {
+        super(tipo,textoPregunta, categoria);
         this.respuesta1 = respuesta1;
         this.respuesta2 = respuesta2;
         this.respuesta3 = respuesta3;

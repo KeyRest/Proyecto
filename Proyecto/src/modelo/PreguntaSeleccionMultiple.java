@@ -11,16 +11,15 @@ public class PreguntaSeleccionMultiple extends PreguntaCuatroOpciones {
     private boolean valorRespuesta2;
     private boolean valorRespuesta3;
     private boolean valorRespuesta4;
-    public static int contador = 0;
+    public int contador;
 
-    public PreguntaSeleccionMultiple(String textoPregunta, String categoria, String respuesta1, boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2, String respuesta3, boolean valorRespuesta3, String respuesta4, boolean valorRespuesta4) {
-        super(textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
+    public PreguntaSeleccionMultiple(String textoPregunta, String categoria, String respuesta1, boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2, String respuesta3, boolean valorRespuesta3, String respuesta4, boolean valorRespuesta4,int contador) {
+        super("SM", textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
         this.valorRespuesta1 = valorRespuesta1;
         this.valorRespuesta2 = valorRespuesta2;
         this.valorRespuesta3 = valorRespuesta3;
         this.valorRespuesta4 = valorRespuesta4;
-        this.id = contador;
-        contador++;
+        this.id = contador+1;      
     }
 
     public boolean getValorRespuesta1() {
@@ -55,12 +54,15 @@ public class PreguntaSeleccionMultiple extends PreguntaCuatroOpciones {
         this.valorRespuesta4 = valorRespuesta4;
     }
 
-    public static int getContador() {
+    public int getContador() {
         return contador;
     }
+    
+    
 
+    @Override
     public String toFileString() {
-        return "";
+        return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta1 + "-" + valorRespuesta1 + "-" + respuesta2 + "-" + valorRespuesta2 + respuesta3 + "-" + valorRespuesta3 + "-" + respuesta4 + "-" + valorRespuesta4;
     }
 
     @Override

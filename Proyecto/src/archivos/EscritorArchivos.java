@@ -4,27 +4,29 @@
  * and open the template in the editor.
  */
 package archivos;
-import modelo.Pregunta;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.FileWriter;
+
+import java.io.*;
+
 /**
  *
  * @author Usuario
  */
 public class EscritorArchivos {
+
     private BufferedWriter escritor;
-    
-    public void open(String fileName) throws IOException{
+
+    public void open(String fileName) throws IOException {
         escritor = new BufferedWriter(new FileWriter(fileName));
-    }
-    
+    }  
+
     public void escribir(String pregunta) throws IOException {
+
         escritor.write(pregunta);
+
     }
-    
-    public void close() throws IOException{
+
+    public void close() throws IOException {
         escritor.close();
     }
-    
+
 }
