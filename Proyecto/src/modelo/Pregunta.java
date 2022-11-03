@@ -18,16 +18,15 @@ public abstract class Pregunta {
     private final String HISTORIA = "Historia";
 
     //Constructores
+        
     public Pregunta(String tipo, String textoPregunta, String categoria) {
         this.tipo = tipo;
         this.textoPregunta = textoPregunta;
         this.categoria = categoria;
-
     }
 
     public Pregunta() {
-        this.textoPregunta = "";
-        this.categoria = "";
+      
     }
     // Getters
 

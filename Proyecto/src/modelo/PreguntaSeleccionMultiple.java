@@ -13,6 +13,10 @@ public class PreguntaSeleccionMultiple extends PreguntaCuatroOpciones {
     private boolean valorRespuesta4;
     public int contador;
 
+    public PreguntaSeleccionMultiple(){
+        
+    }
+    
     public PreguntaSeleccionMultiple(String textoPregunta, String categoria, String respuesta1, boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2, String respuesta3, boolean valorRespuesta3, String respuesta4, boolean valorRespuesta4,int contador) {
         super("SM", textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
         this.valorRespuesta1 = valorRespuesta1;

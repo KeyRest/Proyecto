@@ -17,12 +17,18 @@ public class ListaPreguntas {
     private Pregunta[] lista;
     private int cantidadPreguntas = 0;
     private ValidadorPregunta validador = new ValidadorPregunta();
+    private int contadorSU;
+    private int contadorSM;
+    private int contadorVF;
 
-    public ListaPreguntas() {
+    public ListaPreguntas(int contadorSU, int contadorSM, int contadorVF) {
         this.lista = new Pregunta[15];
+        this.contadorSU = contadorSU;
+        this.contadorSM = contadorSM;
+        this.contadorVF = contadorVF;
     }
 
-    private void agregar(Pregunta pregunta) {
+    public void agregar(Pregunta pregunta) {
 
         if (this.cantidadPreguntas == lista.length) {
             this.duplicarLista();
@@ -45,15 +51,15 @@ public class ListaPreguntas {
         return lista.length;
     }
 
-    public void insertarPregunta(String texto, String categoria, boolean respuesta) {
-        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta);
+    public void insertarPregunta(String texto, String categoria, boolean respuesta, int contador) {
+        PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta, contador);
         this.agregar(pregunta);
 
     }
 
     public void insertarPregunta(String texto, String categoria, String respuesta1,
-            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
-        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcionCorrecta);
+            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) {
+        PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcionCorrecta, contador);
         this.agregar(pregunta);
 
     }
@@ -61,10 +67,10 @@ public class ListaPreguntas {
     public void insertarPregunta(String texto, String categoria, String respuesta1,
             boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2,
             String respuesta3, boolean valorRespuesta3, String respuesta4,
-            boolean valorRespuesta4) {
+            boolean valorRespuesta4, int contador) {
         PreguntaSeleccionMultiple pregunta = new PreguntaSeleccionMultiple(texto, categoria, respuesta1,
                 valorRespuesta1, respuesta2, valorRespuesta2,
-                respuesta3, valorRespuesta3, respuesta4, valorRespuesta4);
+                respuesta3, valorRespuesta3, respuesta4, valorRespuesta4, contador);
         this.agregar(pregunta);
 
     }
@@ -85,7 +91,7 @@ public class ListaPreguntas {
                     }
                 }
 
-                tamano = ((PreguntaVerdaderoFalso) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = contadorVF; //Este contador es la variable STATIC, no el id de la pregunta en si
 
                 PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano];
 
@@ -109,7 +115,7 @@ public class ListaPreguntas {
                     }
                 }
 
-                tamano = ((PreguntaSeleccionUnica) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = contadorSU; //Este contador es la variable STATIC, no el id de la pregunta en si
 
                 PreguntaSeleccionUnica[] listaSeleccionUnica = new PreguntaSeleccionUnica[tamano];
 
@@ -133,7 +139,7 @@ public class ListaPreguntas {
                     }
                 }
 
-                tamano = ((PreguntaSeleccionMultiple) preguntaEjemplo).getContador(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = contadorSM; //Este contador es la variable STATIC, no el id de la pregunta en si
 
                 PreguntaSeleccionMultiple[] listaSeleccionMultiple = new PreguntaSeleccionMultiple[tamano];
 
@@ -249,7 +255,6 @@ public class ListaPreguntas {
                 }
                 break;
 
-            
         }
 
     }

@@ -10,6 +10,10 @@ public class PreguntaSeleccionUnica extends PreguntaCuatroOpciones {
     private int opcionCorrecta;
     public int contador;
 
+    public PreguntaSeleccionUnica(){
+        
+    }
+    
     public PreguntaSeleccionUnica(String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) {
         super("SU",textoPregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4);
         this.opcionCorrecta = opcionCorrecta;

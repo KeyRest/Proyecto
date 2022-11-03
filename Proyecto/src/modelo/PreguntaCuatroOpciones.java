@@ -12,6 +12,10 @@ public abstract class PreguntaCuatroOpciones extends Pregunta {
     protected String respuesta3;
     protected String respuesta4;
 
+    public PreguntaCuatroOpciones(){
+        
+    }
+    
     public PreguntaCuatroOpciones(String tipo,String textoPregunta, String categoria, String respuesta1, String respuesta2, String respuesta3, String respuesta4) {
         super(tipo,textoPregunta, categoria);
         this.respuesta1 = respuesta1;
