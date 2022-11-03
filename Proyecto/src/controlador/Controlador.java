@@ -25,64 +25,74 @@ public class Controlador {
         int contadorSU = 0;
         int contadorSM = 0;
         int contador = 0;
-        
+
         lector.open("file.txt");
         String rutaAbsoluta = lector.readRuta();
         lector.close();
-        
+
         lector.open(rutaAbsoluta);
         int cantidadLineas = lector.contarLineas();
         lector.close();
         
+        ListaPreguntas lista = new ListaPreguntas(contadorSU, contadorSM, contadorVF);
+
         //System.out.println(cantidadLineas);
-        
-        
         boolean activo = true;
         while (activo) {
+            contadorVF = 0;
+            contadorSU = 0;
+            contadorSM = 0;
+            contador = 0;
             if (cantidadLineas < 1) { //SI EL ARCHIVO ESTA VACIO
-                contadorSM = 0;
-                contadorSU = 0;
-                contadorVF = 0;
+
+                lista.agregar(null);
+
+                /*
+                lector.open(rutaAbsoluta);
+                lista.setLista(lector.readListaPreguntas(contador));
+                lector.close();
+                */
+
             } else { //SI EL ARCHIVO TIENE LINEAS
                 lector.open(rutaAbsoluta);
                 String line = lector.getLector().readLine();
-                
+
                 while (line != null) {
-                    
+
                     String datos[];
                     datos = line.split("-");
-                    
-                    switch(datos[0]){
-                        case "VF" -> contadorVF++;
-                        case "SM" -> contadorSM++;
-                        case "SU" -> contadorSU++;
+
+                    switch (datos[0]) {
+                        case "VF" ->
+                            contadorVF = Integer.parseInt(datos[1]);
+                        case "SM" ->
+                            contadorSM = Integer.parseInt(datos[1]);
+                        case "SU" ->
+                            contadorSU = Integer.parseInt(datos[1]);
                     }
-                    
+
                     line = lector.getLector().readLine();
                     contador++;
                 }
-                
+
+                lector.close();
+
+                lista = new ListaPreguntas(contadorSU, contadorSM, contadorVF);
+
+                lector.open(rutaAbsoluta);
+                lista.setLista(lector.readListaPreguntas(contador));
                 lector.close();
             }
 
-            ListaPreguntas lista = new ListaPreguntas(contadorSU, contadorSM, contadorVF);
+            InterfazMenu interfaz = new InterfazMenu(lista);
 
-            lector.open(rutaAbsoluta);
-            
-            lista.setLista(lector.readListaPreguntas(contador));
-            
-            lector.close();
+            activo = interfaz.iniciarMenu();
 
-            InterfazMenu interfaz = new InterfazMenu(lista, contadorVF, contadorSU, contadorSM);
-
-            interfaz.iniciarMenu();
-
+            //System.out.println(lista.getLista().length);
             escritor.open(rutaAbsoluta);
             escritor.escribir(lista.getLista());
             escritor.close();
-
-            activo = false;
         }
-        
+
     }
 }

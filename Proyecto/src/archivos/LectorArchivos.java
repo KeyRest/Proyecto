@@ -44,8 +44,8 @@ public class LectorArchivos {
 
     public Pregunta[] readListaPreguntas(int tamano) throws IOException, ClassNotFoundException {
 
-        Pregunta[] listaLeida = new Pregunta[15];
-        
+        Pregunta[] listaLeida = new Pregunta[1];
+
         if (tamano > 0) {
             listaLeida = new Pregunta[tamano];
             int indiceLista = 0;
@@ -56,22 +56,27 @@ public class LectorArchivos {
                     Pregunta pregunta = null;
                     String datos[];
                     datos = line.split("-");
-                    switch (datos[0]) {
-                        case "VF":
-                            pregunta = new PreguntaVerdaderoFalso(datos[2], datos[3], Boolean.parseBoolean(datos[4]), Integer.parseInt(datos[1]) - 1);
-                            listaLeida[indiceLista] = pregunta;
-                            indiceLista++;
-                            break;
-                        case "SU":
-                            pregunta = new PreguntaSeleccionUnica(datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], Integer.parseInt(datos[8]), Integer.parseInt(datos[1]) - 1);
-                            listaLeida[indiceLista] = pregunta;
-                            indiceLista++;
-                            break;
-                        case "SM":
-                            pregunta = new PreguntaSeleccionMultiple(datos[2], datos[3], datos[4], Boolean.parseBoolean(datos[5]), datos[6], Boolean.parseBoolean(datos[7]), datos[8], Boolean.parseBoolean(datos[9]), datos[10], Boolean.parseBoolean(datos[11]), Integer.parseInt(datos[1]) - 1);
-                            listaLeida[indiceLista] = pregunta;
-                            indiceLista++;
-                            break;
+                    if (!"null".equals(line)) {
+                        switch (datos[0]) {
+                            case "VF" -> {
+                                pregunta = new PreguntaVerdaderoFalso(datos[2], datos[3], Boolean.parseBoolean(datos[4]), Integer.parseInt(datos[1]) - 1);
+                                listaLeida[indiceLista] = pregunta;
+                                indiceLista++;
+                            }
+                            case "SU" -> {
+                                pregunta = new PreguntaSeleccionUnica(datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], Integer.parseInt(datos[8]), Integer.parseInt(datos[1]) - 1);
+                                listaLeida[indiceLista] = pregunta;
+                                indiceLista++;
+                            }
+                            case "SM" -> {
+                                pregunta = new PreguntaSeleccionMultiple(datos[2], datos[3], datos[4], Boolean.parseBoolean(datos[5]), datos[6], Boolean.parseBoolean(datos[7]), datos[8], Boolean.parseBoolean(datos[9]), datos[10], Boolean.parseBoolean(datos[11]), Integer.parseInt(datos[1]) - 1);
+                                listaLeida[indiceLista] = pregunta;
+                                indiceLista++;
+                            }
+                        }
+                    } else {
+                        listaLeida[indiceLista] = pregunta;
+                        indiceLista++;
                     }
 
                     // LEER SIGUIENTE LÍNEA

@@ -44,4 +44,21 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         }
         return valido;
     }
+
+    @Override
+    public String toString() {
+        String categoriaEnTexto = "";
+        
+        switch(this.categoria){
+            case "1" -> categoriaEnTexto = "Deporte";
+            case "2" -> categoriaEnTexto = "Entrenamiento";
+            case "3" -> categoriaEnTexto = "Historia";
+        }
+        
+        return "TEXTO PREGUNTA = " + this.textoPregunta + "\nCATEGORÍA = " + categoriaEnTexto + "\n"
+                + "RESPUESTA = " + this.respuesta ;
+    }
+    
+    
+    
 }

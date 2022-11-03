@@ -50,5 +50,20 @@ public class PreguntaSeleccionUnica extends PreguntaCuatroOpciones {
         }
         return valido;
     }
+    
+    @Override
+    public String toString() {
+        String categoriaEnTexto = "";
+        
+        switch(this.categoria){
+            case "1" -> categoriaEnTexto = "Deporte";
+            case "2" -> categoriaEnTexto = "Entrenamiento";
+            case "3" -> categoriaEnTexto = "Historia";
+        }
+        
+        return "TEXTO PREGUNTA = " + this.textoPregunta + "\nCATEGORÍA = " + categoriaEnTexto + "\n"
+                + "OPCION 1 = " + this.respuesta1 + "\nOPCION 2 = " + this.respuesta2 + "\nOPCION 3 = " + this.respuesta3
+                + "\nOPCION 4 = " + this.respuesta4 + "\nOPCION CORRECTA = " + this.opcionCorrecta;
+    }
 
 }

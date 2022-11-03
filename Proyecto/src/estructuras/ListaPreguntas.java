@@ -8,22 +8,18 @@ import modelo.Pregunta;
 import modelo.PreguntaVerdaderoFalso;
 import modelo.PreguntaSeleccionUnica;
 import modelo.PreguntaSeleccionMultiple;
-import modelo.PreguntaCuatroOpciones;
-import modelo.Respuesta;
-import modelo.ValidadorPregunta;
 
 public class ListaPreguntas {
 
     private Pregunta[] lista;
     private int cantidadPreguntas;
-    private ValidadorPregunta validador = new ValidadorPregunta();
     private int contadorSU;
     private int contadorSM;
     private int contadorVF;
 
     public ListaPreguntas(int contadorSU, int contadorSM, int contadorVF) {
         this.cantidadPreguntas = contadorSU + contadorSM + contadorVF;
-        this.lista = new Pregunta[15];
+        this.lista = new Pregunta[1];
         this.contadorSU = contadorSU;
         this.contadorSM = contadorSM;
         this.contadorVF = contadorVF;
@@ -52,18 +48,17 @@ public class ListaPreguntas {
     
 
     public void agregar(Pregunta pregunta) {
-
+        
         if (this.cantidadPreguntas == lista.length) {
-            this.duplicarLista();
+            this.aumentarLista();
         }
-
-        lista[cantidadPreguntas] = pregunta;
-
-        cantidadPreguntas += 1;
+        
+        lista[lista.length - 1] = pregunta;
+        cantidadPreguntas ++;
     }
 
-    private void duplicarLista() {
-        Pregunta[] listaAux = new Pregunta[lista.length * 2];
+    private void aumentarLista() {
+        Pregunta[] listaAux = new Pregunta[lista.length +1];
         for (int i = 0; i < lista.length; i++) {
             listaAux[i] = lista[i];
         }
@@ -77,7 +72,6 @@ public class ListaPreguntas {
     public void insertarPregunta(String texto, String categoria, boolean respuesta, int contador) {
         PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta, contador);
         this.agregar(pregunta);
-
     }
 
     public void insertarPregunta(String texto, String categoria, String respuesta1,
@@ -100,42 +94,31 @@ public class ListaPreguntas {
     //Recibe como parametro un entero 1, 2 o 3 segun el tipo de pregunta que se desea consultar
     //Retorna un arreglo con unicamente las preguntas de dicho tipo
     public Pregunta[] mostrarPregunta(int tipoPregunta) { //tipoPregunta debe ser 1, 2 o 3
-        Pregunta[] lista = {};
+        Pregunta[] listaFiltrada = {};
         int tamano;
-        Pregunta preguntaEjemplo = null;
 
         switch (tipoPregunta) {
-            case 1: //Preguntas de verdadero/falso
+            case 1 -> {
+                //Preguntas de verdadero/falso
 
-                for (Pregunta pregunta : lista) {
-                    if (pregunta instanceof PreguntaVerdaderoFalso) {
-                        preguntaEjemplo = (PreguntaVerdaderoFalso) pregunta;
-                    }
-                }
-
-                tamano = contadorVF; //Este contador es la variable STATIC, no el id de la pregunta en si
+                tamano = this.getContadorVF(); //Este contador es la variable STATIC, no el id de la pregunta en si
+                //System.out.println(tamano);
 
                 PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano];
 
-                int contadorVerdaderoFalso = -1;
+                int contadorVerdaderoFalso = 0;
 
-                for (Pregunta pregunta : lista) {
+                for (Pregunta pregunta : this.lista) {
                     if (pregunta instanceof PreguntaVerdaderoFalso) {
-                        contadorVerdaderoFalso++;
                         listaVerdaderoFalso[contadorVerdaderoFalso] = (PreguntaVerdaderoFalso) pregunta;
+                        contadorVerdaderoFalso++;
                     }
                 }
 
-                lista = listaVerdaderoFalso;
-
-                break;
-            case 2: //Preguntas de seleccion unica
-
-                for (Pregunta pregunta : lista) {
-                    if (pregunta instanceof PreguntaSeleccionUnica) {
-                        preguntaEjemplo = pregunta;
-                    }
-                }
+                listaFiltrada = listaVerdaderoFalso;
+            }
+            case 2 -> {
+                //Preguntas de seleccion unica
 
                 tamano = contadorSU; //Este contador es la variable STATIC, no el id de la pregunta en si
 
@@ -143,23 +126,17 @@ public class ListaPreguntas {
 
                 int contadorSeleccionUnica = -1;
 
-                for (Pregunta pregunta : lista) {
+                for (Pregunta pregunta : this.lista) {
                     if (pregunta instanceof PreguntaSeleccionUnica) {
                         contadorSeleccionUnica++;
                         listaSeleccionUnica[contadorSeleccionUnica] = (PreguntaSeleccionUnica) pregunta;
                     }
                 }
 
-                lista = listaSeleccionUnica;
-
-                break;
-            case 3: //Preguntas de seleccion multiple
-
-                for (Pregunta pregunta : lista) {
-                    if (pregunta instanceof PreguntaSeleccionMultiple) {
-                        preguntaEjemplo = pregunta;
-                    }
-                }
+                listaFiltrada = listaSeleccionUnica;
+            }
+            case 3 -> {
+                //Preguntas de seleccion multiple
 
                 tamano = contadorSM; //Este contador es la variable STATIC, no el id de la pregunta en si
 
@@ -167,21 +144,20 @@ public class ListaPreguntas {
 
                 int contadorSeleccionMultiple = -1;
 
-                for (Pregunta pregunta : lista) {
+                for (Pregunta pregunta : this.lista) {
                     if (pregunta instanceof PreguntaSeleccionMultiple) {
                         contadorSeleccionMultiple++;
                         listaSeleccionMultiple[contadorSeleccionMultiple] = (PreguntaSeleccionMultiple) pregunta;
                     }
                 }
 
-                lista = listaSeleccionMultiple;
-
-                break;
-            default:
-                break;
+                listaFiltrada = listaSeleccionMultiple;
+            }
+            default -> {
+            }
         }
 
-        return lista;
+        return listaFiltrada;
     }
 
     public void actualizarPregunta(int id, String texto, String categoria, boolean respuesta) {
@@ -245,7 +221,6 @@ public class ListaPreguntas {
     }
 
     public void eliminarPregunta(int tipoPregunta, int id) {
-
         switch (tipoPregunta) {
 
             case 1:
@@ -278,7 +253,6 @@ public class ListaPreguntas {
                 break;
 
         }
-
     }
 
 }

@@ -5,6 +5,7 @@
 package vistas.terminal;
 
 import estructuras.ListaPreguntas;
+import modelo.*;
 
 public class InterfazMenu {
 
@@ -12,41 +13,42 @@ public class InterfazMenu {
     Lector lector;
     private final ListaPreguntas lista;
 
-    public InterfazMenu(ListaPreguntas lista, int contadorVF, int contadorSU, int contadorSM) {
+    public InterfazMenu(ListaPreguntas lista) {
         this.lista = lista;
         this.escritor = new Escritor();
         this.lector = new Lector();
     }
 
-    public void iniciarMenu() {
+    public boolean iniciarMenu() {
         int opcion;
         boolean activo = true;
-        
+
         escritor.escribir("Bienvenido al CRUD");
-        while (activo) {
-            escritor.escribir("""
+        escritor.escribir("""
                               Seleccione una opcion: 
                               1-Insertar 
                               2-Mostrar 
                               3-Actualizar 
                               4-Eliminar 
                               5-Salir""");
-            opcion = lector.leerEntero();
-            
+        opcion = lector.leerEntero();
 
-            switch (opcion) {
-                case 1 -> //INSERTAR PREGUNTA
-                    insertarPregunta();
-                case 2 -> //MOSTRAR PREGUNTA
-                    mostrarPregunta();
-                case 3 -> //ACTUALIZAR PREGUNTA
-                    actualizarPregunta();
-                case 4 -> eliminarPregunta();
+        switch (opcion) {
+            case 1 -> //INSERTAR PREGUNTA
+                insertarPregunta();
+            case 2 -> //MOSTRAR PREGUNTA
+                mostrarPregunta();
+            case 3 -> //ACTUALIZAR PREGUNTA
+                actualizarPregunta();
+            case 4 ->
+                eliminarPregunta();
 
-                case 5 -> activo = false;
-                default -> throw new AssertionError();
-            }
+            case 5 ->
+                activo = false;
+            default ->
+                throw new AssertionError();
         }
+        return activo;
     }
 
     private void insertarPregunta() {
@@ -114,6 +116,7 @@ public class InterfazMenu {
             }
             case 2 -> {
                 //Pregunta Seleccion Unica
+                lector.leerString();
                 resp1 = IntroducirRespDeOpcionMultiple(1);
                 resp2 = IntroducirRespDeOpcionMultiple(2);
                 resp3 = IntroducirRespDeOpcionMultiple(3);
@@ -135,16 +138,20 @@ public class InterfazMenu {
 
             case 3 -> {
                 //Pregunta Seleccion Multiple
-
+                
+                lector.leerString();
                 resp1 = IntroducirRespDeOpcionMultiple(1);
                 valorResp1 = IntroducirValorRespDeOpcionMultiple(1);
-
+                
+                lector.leerString();
                 resp2 = IntroducirRespDeOpcionMultiple(2);
                 valorResp2 = IntroducirValorRespDeOpcionMultiple(2);
-
+                
+                lector.leerString();
                 resp3 = IntroducirRespDeOpcionMultiple(3);
                 valorResp3 = IntroducirValorRespDeOpcionMultiple(3);
 
+                lector.leerString();
                 resp4 = IntroducirRespDeOpcionMultiple(4);
                 valorResp4 = IntroducirValorRespDeOpcionMultiple(4);
 
@@ -156,29 +163,50 @@ public class InterfazMenu {
     }
 
     private void mostrarPregunta() {
-        boolean opcionValida = false;
+        boolean entradaValida = false;
         int opcion = 0;
-        int opcion2;
+        int indicePreguntaSeleccionada;
 
-        while (opcionValida == false) {
+        while (entradaValida == false) {
             escritor.escribir("""
                               Ingrese el tipo de preguntas a mostrar: 
                               1-Falso/Verdadero 
                               2-Selecci\u00f3n Unica 
                               3-Selecci\u00f3n M\u00faltiple""");
             opcion = lector.leerEntero();
-            if (opcion >= 1 && opcion <= 3) {
-                opcionValida = true;
+            if ((opcion >= 1) && (opcion <= 3)) {
+                entradaValida = true;
             } else {
                 escritor.escribir("Solo puede ingresar 1 , 2 o 3");
             }
         }
-        for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
-            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+
+        Pregunta tempArray[] = lista.mostrarPregunta(opcion);
+
+        int max = tempArray.length;
+
+        
+        for (int i = 0; i < max; i++) {
+            if(tempArray[i]!= null){
+                escritor.escribir(String.valueOf((i + 1) + ": " + tempArray[i].getTexto()));
+            }
         }
+        
         escritor.escribir("Seleccione la pregunta de la cual desea mas informacion");
-        opcion2 = lector.leerEntero() - 1;
-        lista.mostrarPregunta(opcion)[opcion2].toString();
+        
+        indicePreguntaSeleccionada = lector.leerEntero() - 1;
+        
+        try{
+            escritor.escribir(lista.mostrarPregunta(opcion)[indicePreguntaSeleccionada].toString());
+        } catch(ArrayIndexOutOfBoundsException exception){
+            escritor.escribir("No se encontro la pregunta");
+        }
+        
+        
+        escritor.escribir("\nPresione cualquier tecla para continuar");
+        lector.leerString();
+        lector.leerString();
+        
     }
 
     private void actualizarPregunta() {
@@ -218,14 +246,22 @@ public class InterfazMenu {
         }
 
         for (int i = 0; i < lista.mostrarPregunta(opcion).length; i++) {
-            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]));
+            escritor.escribir(String.valueOf((i + 1) + ": " + lista.mostrarPregunta(opcion)[i]) + "\n");
         }
         escritor.escribir("Seleccione la pregunta a actualizar");
         opcion2 = lector.leerEntero() - 1;
+        
+        /*
+        System.out.println("EL tamano de mostrar es " + lista.mostrarPregunta(opcion).length);
+        System.out.println("El indice a usar es" + opcion2);
+        */
+        
+
         lista.mostrarPregunta(opcion)[opcion2].toString();
 
         while (minMax == false) {
             escritor.escribir("Ingrese el nuevo texto de la pregunta");
+            lector.leerString();
             pregunta = lector.leerString();
             minMax = validarLength(pregunta, 4, 50);
             if (minMax == false) {
@@ -247,15 +283,17 @@ public class InterfazMenu {
                                   La pregunta es: 
                                   1-Falsa/ 
                                   2-Verdadera""");
-                opcion = lector.leerEntero();
+                int opcionTrueFalse = lector.leerEntero();
                 switch (opcion) {
-                    case 1 -> preguntaTrueOrFalse = false;
-                    case 2 -> preguntaTrueOrFalse = true;
-                    default -> throw new AssertionError();
+                    case 1 ->
+                        preguntaTrueOrFalse = false;
+                    case 2 ->
+                        preguntaTrueOrFalse = true;
+                    default ->
+                        throw new AssertionError();
                 }
                 lista.actualizarPregunta(
-                        lista.mostrarPregunta(opcion)[opcion2].getId(),
-                        pregunta, categoria, preguntaTrueOrFalse);
+                        lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, preguntaTrueOrFalse);
             }
 
             case 2 -> {
@@ -328,9 +366,12 @@ public class InterfazMenu {
                                       2-Verdadera""");
                     opcion = lector.leerEntero();
                     switch (opcion) {
-                        case 1 -> valorResp1 = false;
-                        case 2 -> valorResp1 = true;
-                        default -> escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                        case 1 ->
+                            valorResp1 = false;
+                        case 2 ->
+                            valorResp1 = true;
+                        default ->
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
                     }
                 }
 
@@ -352,9 +393,12 @@ public class InterfazMenu {
                                       2-Verdadera""");
                     opcion = lector.leerEntero();
                     switch (opcion) {
-                        case 1 -> valorResp2 = false;
-                        case 2 -> valorResp2 = true;
-                        default -> escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                        case 1 ->
+                            valorResp2 = false;
+                        case 2 ->
+                            valorResp2 = true;
+                        default ->
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
                     }
                 }
 
@@ -376,9 +420,12 @@ public class InterfazMenu {
                                       2-Verdadera""");
                     opcion = lector.leerEntero();
                     switch (opcion) {
-                        case 1 -> valorResp3 = false;
-                        case 2 -> valorResp3 = true;
-                        default -> escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                        case 1 ->
+                            valorResp3 = false;
+                        case 2 ->
+                            valorResp3 = true;
+                        default ->
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
                     }
                 }
 
@@ -400,23 +447,27 @@ public class InterfazMenu {
                                       2-Verdadera""");
                     opcion = lector.leerEntero();
                     switch (opcion) {
-                        case 1 -> valorResp4 = false;
-                        case 2 -> valorResp4 = true;
-                        default -> escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
+                        case 1 ->
+                            valorResp4 = false;
+                        case 2 ->
+                            valorResp4 = true;
+                        default ->
+                            escritor.escribir("Debe ingresar 1 o 2 segun corresponda");
                     }
                 }
                 lista.actualizarPregunta(lista.mostrarPregunta(opcion)[opcion2].getId(), pregunta, categoria, resp1, valorResp1, resp2, valorResp2, resp3, valorResp3, resp4, valorResp4);
             }
-            default -> System.out.println("Ingrese un valor correcto");
+            default ->
+                System.out.println("Ingrese un valor correcto");
 
         }
     }
 
     private void eliminarPregunta() {
-        
+
         int opcion = 1;
         int opcion2;
-        
+
         boolean opcionValida = false;
         while (opcionValida == false) {
             escritor.escribir("""
@@ -437,7 +488,6 @@ public class InterfazMenu {
         }
         escritor.escribir("Seleccione la pregunta a eliminar");
         opcion2 = lector.leerEntero() - 1;
-        lista.mostrarPregunta(opcion)[opcion2].toString();
         lista.eliminarPregunta(opcion, lista.mostrarPregunta(opcion)[opcion2].getId());
     }
 
@@ -471,12 +521,11 @@ public class InterfazMenu {
     private String IntroducirRespDeOpcionMultiple(int numeroRespuesta) {
         String textoRespuesta = "";
         boolean minMax = false;
-        
+
         while (minMax == false) {
             escritor.escribir("Digite el texto de la respuesta " + numeroRespuesta);
-            //lector.leerString();
             textoRespuesta = lector.leerString();
-            
+
             minMax = validarLength(textoRespuesta, 1, 20);
             if (minMax == false) {
                 escritor.escribir("La respuesta deber de ser mayor "
