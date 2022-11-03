@@ -15,17 +15,26 @@ import modelo.ValidadorPregunta;
 public class ListaPreguntas {
 
     private Pregunta[] lista;
-    private int cantidadPreguntas = 0;
+    private int cantidadPreguntas;
     private ValidadorPregunta validador = new ValidadorPregunta();
     private int contadorSU;
     private int contadorSM;
     private int contadorVF;
 
     public ListaPreguntas(int contadorSU, int contadorSM, int contadorVF) {
+        this.cantidadPreguntas = contadorSU + contadorSM + contadorVF;
         this.lista = new Pregunta[15];
         this.contadorSU = contadorSU;
         this.contadorSM = contadorSM;
         this.contadorVF = contadorVF;
+    }
+
+    public Pregunta[] getLista() {
+        return lista;
+    }
+
+    public void setLista(Pregunta[] lista) {
+        this.lista = lista;
     }
 
     public void agregar(Pregunta pregunta) {
@@ -61,7 +70,6 @@ public class ListaPreguntas {
             String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) {
         PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcionCorrecta, contador);
         this.agregar(pregunta);
-
     }
 
     public void insertarPregunta(String texto, String categoria, String respuesta1,

@@ -66,7 +66,7 @@ public class PreguntaSeleccionMultiple extends PreguntaCuatroOpciones {
 
     @Override
     public String toFileString() {
-        return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta1 + "-" + valorRespuesta1 + "-" + respuesta2 + "-" + valorRespuesta2 + respuesta3 + "-" + valorRespuesta3 + "-" + respuesta4 + "-" + valorRespuesta4;
+        return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta1 + "-" + valorRespuesta1 + "-" + respuesta2 + "-" + valorRespuesta2 + "-" + respuesta3 + "-" + valorRespuesta3 + "-" + respuesta4 + "-" + valorRespuesta4;
     }
 
     @Override

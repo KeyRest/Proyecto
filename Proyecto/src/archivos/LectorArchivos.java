@@ -27,26 +27,73 @@ public class LectorArchivos {
         return line;
     }
 
-    public Pregunta readPregunta() throws IOException {
-        Pregunta pregunta = null;
-        String line = lector.readLine();
-        String datos[];
-        if (line != null) {
-            datos = line.split("-");
+    public int contarLineas() throws IOException {
 
-            switch (datos[0]) {
-                case "VF":
-                    pregunta = new PreguntaVerdaderoFalso(datos[2], datos[3], Boolean.parseBoolean(datos[4]), Integer.parseInt(datos[1]) - 1);
-                    break;
-                case "SU":
-                    pregunta = new PreguntaSeleccionUnica(datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], Integer.parseInt(datos[8]), Integer.parseInt(datos[1]) - 1);
-                    break;
-                case "SM":
-                    pregunta = new PreguntaSeleccionMultiple(datos[2], datos[3], datos[4], Boolean.parseBoolean(datos[5]), datos[6], Boolean.parseBoolean(datos[7]), datos[8], Boolean.parseBoolean(datos[9]), datos[10], Boolean.parseBoolean(datos[11]), Integer.parseInt(datos[1]) - 1);
-                    break;
-            }
+        int lineas = 0;
+
+        String line = lector.readLine();
+
+        while (line != null) {
+            lineas++;
+            line = lector.readLine();
         }
-        return pregunta;
+
+        return lineas;
+
+    }
+
+    public Pregunta[] readListaPreguntas(int tamano) throws IOException, ClassNotFoundException {
+
+        Pregunta[] listaLeida = new Pregunta[15];
+        
+        System.out.println(tamano);
+        
+        if (tamano > 0) {
+            listaLeida = new Pregunta[tamano];
+            int indiceLista = 0;
+
+            try {
+                String line = lector.readLine();
+                while (line != null) {
+                    Pregunta pregunta = null;
+                    String datos[];
+                    datos = line.split("-");
+                    switch (datos[0]) {
+                        case "VF":
+                            pregunta = new PreguntaVerdaderoFalso(datos[2], datos[3], Boolean.parseBoolean(datos[4]), Integer.parseInt(datos[1]) - 1);
+                            listaLeida[indiceLista] = pregunta;
+                            indiceLista++;
+                            break;
+                        case "SU":
+                            pregunta = new PreguntaSeleccionUnica(datos[2], datos[3], datos[4], datos[5], datos[6], datos[7], Integer.parseInt(datos[8]), Integer.parseInt(datos[1]) - 1);
+                            listaLeida[indiceLista] = pregunta;
+                            indiceLista++;
+                            break;
+                        case "SM":
+                            pregunta = new PreguntaSeleccionMultiple(datos[2], datos[3], datos[4], Boolean.parseBoolean(datos[5]), datos[6], Boolean.parseBoolean(datos[7]), datos[8], Boolean.parseBoolean(datos[9]), datos[10], Boolean.parseBoolean(datos[11]), Integer.parseInt(datos[1]) - 1);
+                            listaLeida[indiceLista] = pregunta;
+                            indiceLista++;
+                            break;
+                    }
+
+                    // LEER SIGUIENTE LÍNEA
+                    line = lector.readLine();
+                }
+                //lector.close();
+            } catch (IOException e) {
+                System.out.println("Error");
+            }
+
+            /*
+        if (listaLeida[0] != null) {
+            System.out.println(listaLeida[0].toFileString());
+        } else {
+            System.out.println("es null");
+        }
+             */
+        }
+
+        return listaLeida;
     }
 
     public void close() throws IOException {
