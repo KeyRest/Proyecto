@@ -175,7 +175,7 @@ public class ListaPreguntas {
         }
     }
 
-    public void actualizarPregunta(String texto, String categoria, String respuesta1,
+    public void actualizarPregunta(int id,String texto, String categoria, String respuesta1,
             String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
 
         for (int i = 0; i < lista.length; i++) {
@@ -195,7 +195,7 @@ public class ListaPreguntas {
 
     }
 
-    public void actualizarPregunta(String texto, String categoria, String respuesta1,
+    public void actualizarPregunta(int id,String texto, String categoria, String respuesta1,
             boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2,
             String respuesta3, boolean valorRespuesta3, String respuesta4,
             boolean valorRespuesta4) {
