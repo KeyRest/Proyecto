@@ -25,9 +25,16 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         this.respuesta = respuesta;
     }
 
+    @Override
     public String toFileString() {
-        return "";
+        return id + "-" + textoPregunta + "-" + categoria + "-" + respuesta;
     }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
+    
+    
 
     public static int getContador() {
         return contador;
@@ -45,5 +52,4 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         }
         return valido;
     }
-
 }

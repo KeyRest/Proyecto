@@ -19,8 +19,8 @@ public class EscritorArchivos {
         escritor = new BufferedWriter(new FileWriter(fileName));
     }
     
-    public void write(Pregunta pregunta) throws IOException {
-        escritor.write(pregunta.toFileString()+"\n");
+    public void escribir(String pregunta) throws IOException {
+        escritor.write(pregunta);
     }
     
     public void close() throws IOException{

@@ -25,13 +25,14 @@ public class InterfazMenu {
     private boolean valorResp2 = false;
     private boolean valorResp3 = false;
     private boolean valorResp4 = false;
+    private boolean activo = true;
 
     private boolean validarLength(String texto, int min, int max) {
         boolean minMax;
         if (texto.length() < min || texto.length() > max) {
-            minMax = true;
-        } else {
             minMax = false;
+        } else {
+            minMax = true;
         }
 
         return minMax;
@@ -43,6 +44,7 @@ public class InterfazMenu {
         Lector lector = new Lector();
 
         escritor.escribir("Bienvenido al CRUD");
+       while(activo){
         escritor.escribir("Seleccione una opcion: \n"
                 + "1-Insertar \n"
                 + "2-Mostrar \n"
@@ -55,6 +57,7 @@ public class InterfazMenu {
             case 1:
                 while (minMax == false) {
                     escritor.escribir("Ingrese el texto de la pregunta");
+                    lector.leerString();
                     pregunta = lector.leerString();
                     minMax = validarLength(pregunta, 4, 50);
                     if (minMax == false) {
@@ -530,9 +533,13 @@ public class InterfazMenu {
                 lista.mostrarPregunta(opcion)[opcion2].toString();
                 lista.eliminarPregunta(opcion, lista.mostrarPregunta(opcion)[opcion2].getId());
                 break;
+                
+            case 5:
+                activo = false;
+                break;
             default:
                 throw new AssertionError();
         }
-
+       }
     }
 }

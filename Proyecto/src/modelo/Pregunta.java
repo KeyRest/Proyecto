@@ -8,8 +8,8 @@ package modelo;
 public abstract class Pregunta {
 
     // Variables
-    private String textoPregunta;
-    private String categoria;
+    protected String textoPregunta;
+    protected String categoria;
     protected static int id;
 
     private final String ENTRETENIMIENTO = "Entretenimiento";

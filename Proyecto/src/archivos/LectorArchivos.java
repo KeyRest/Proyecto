@@ -16,12 +16,13 @@ public class LectorArchivos {
         lector = new BufferedReader(new FileReader(fileName));
     }
     
-    public Pregunta read() throws IOException, ClassNotFoundException {
+    public String readRuta() throws IOException, ClassNotFoundException {
         
         Pregunta pregunta = null;
         
+        
+        String line = lector.readLine();
         /*
-        String line = reader.readLine();
         String datos[];
         if(line != null){
             person = new Person();
@@ -33,8 +34,7 @@ public class LectorArchivos {
         }
         return person;
         */
-        
-        return pregunta;
+        return line;
     }
     
     public void close() throws IOException{
