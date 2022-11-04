@@ -1,24 +1,33 @@
-/**
- *
- * @author Keiron Garro  C23212
- */
 package vistas.terminal;
-
 import estructuras.ListaPreguntas;
 import modelo.*;
 
+/**
+ * Esta clase controla la interfaz de terminal
+ *
+ * @version 3 de noviembre 2022
+ * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740, Jeaustin Castro López C21912
+ */
 public class InterfazMenu {
 
     Escritor escritor;
     Lector lector;
     private final ListaPreguntas lista;
 
+    /** Construye una interfaz de menú
+     *
+     * @param lista La lista con la que se va a comunicar el menú
+     */
     public InterfazMenu(ListaPreguntas lista) {
         this.lista = lista;
         this.escritor = new Escritor();
         this.lector = new Lector();
     }
 
+    /** Inicia y ejecuta el menú
+     *
+     * @return Si se ha de cerrar todo el sistema, retorna false
+     */
     public boolean iniciarMenu() {
         int opcion;
         boolean activo = true;

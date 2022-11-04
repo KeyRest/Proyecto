@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package vistas.terminal;
 
 /**
+ * Esta clase consiste en el escritor de la consola
  *
- * @author maris
+ * @version 3 de noviembre 2022
+ * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740, Jeaustin Castro López C21912
  */
 public class Escritor {
 
-  public Escritor() {
+    /** Construye un escritor
+     *
+     */
+    public Escritor() {
 
   }
 
-  public void escribir(String texto) {
+    /** Escribe texto en la consola
+     *
+     * @param texto El texto a ser escrito
+     */
+    public void escribir(String texto) {
     System.out.println(texto);
   }
 }

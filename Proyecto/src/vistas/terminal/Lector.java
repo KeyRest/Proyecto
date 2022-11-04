@@ -1,36 +1,52 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package vistas.terminal;
 
-/**
- *
- * @author maris
- */
+package vistas.terminal;
 import java.util.Scanner;
 
+/**
+ * Esta clase consiste en el lector de la consola
+ *
+ * @version 3 de noviembre 2022
+ * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740, Jeaustin Castro López C21912
+ */
 public class Lector {
+    private Scanner leer;
 
-  public Scanner leer;
-
-  public Lector() {
+    /** Construye el lector
+     *
+     */
+    public Lector() {
     this.leer = new Scanner(System.in);
   }
 
-  public int leerEntero() {
+    /** Lee un entero
+     *
+     * @return Retorna el entero leído
+     */
+    public int leerEntero() {
     return leer.nextInt();
   }
 
-  public double leerDouble() {
+    /** Lee un double
+     *
+     * @return Retorna el double leído
+     */
+    public double leerDouble() {
     return leer.nextDouble();
   }
 
-  public String leerString() {
+    /** Lee una cadena de texto
+     *
+     * @return Retorna la cadena de texto leída
+     */
+    public String leerString() {
     return leer.nextLine();
   }
 
-  public boolean leerBoolean() {
+    /** Lee un boolean
+     *
+     * @return Retorna el boolean leído
+     */
+    public boolean leerBoolean() {
     return leer.nextBoolean();
   }
 

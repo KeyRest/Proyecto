@@ -1,32 +1,52 @@
-/**
- *
- * @author Usuario
- */
 package archivos;
-
-import estructuras.ListaPreguntas;
 import modelo.Pregunta;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
-import modelo.PreguntaCuatroOpciones;
 import modelo.PreguntaSeleccionMultiple;
 import modelo.PreguntaSeleccionUnica;
 import modelo.PreguntaVerdaderoFalso;
 
+/**
+ * Esta clase consiste en el lector de archivos de texto
+ *
+ * @version 3 de noviembre 2022
+ * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740,
+ * Jeaustin Castro López C21912
+ */
 public class LectorArchivos {
 
     private BufferedReader lector;
 
+    /**
+     * Abre un flujo de datos para el archivo enviado por el parámetro
+     *
+     * @param fileName ruta del archivo cuyo flujo de datos ha de ser abierto
+     * @throws java.io.IOException
+     */
     public void open(String fileName) throws IOException {
         lector = new BufferedReader(new FileReader(fileName));
     }
 
+    /**
+     * Lee una línea de un archivo de texto y la retorna como String
+     *
+     * @return line Retorna la línea que contiene la ruta
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     */
     public String readRuta() throws IOException, ClassNotFoundException {
         String line = lector.readLine();
         return line;
     }
 
+    /**
+     * Retorna la cantidad de líneas del archivo de texto cuyo flujo de datos
+     * está abierto
+     *
+     * @return lineas La cantidad de líneas del archivo de texto
+     * @throws java.io.IOException
+     */
     public int contarLineas() throws IOException {
 
         int lineas = 0;
@@ -42,6 +62,14 @@ public class LectorArchivos {
 
     }
 
+    /**
+     * Crea una lista de preguntas del archivo del flujo de datos abierto
+     *
+     * @param tamano El tamaño específico con el que debe ser creada la lista
+     * @return listaLeida La lista de preguntas que se leyó del archivo
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     */
     public Pregunta[] readListaPreguntas(int tamano) throws IOException, ClassNotFoundException {
 
         Pregunta[] listaLeida = new Pregunta[1];
@@ -99,10 +127,20 @@ public class LectorArchivos {
         return listaLeida;
     }
 
+    /**
+     * Cierra el flujo de datos que esté abierto
+     *
+     * @throws java.io.IOException
+     */
     public void close() throws IOException {
         lector.close();
     }
 
+    /**
+     * Abre un flujo de datos para el archivo enviado por el parámetro
+     *
+     * @return lector Retorna el buffered reader
+     */
     public BufferedReader getLector() {
         return lector;
     }
