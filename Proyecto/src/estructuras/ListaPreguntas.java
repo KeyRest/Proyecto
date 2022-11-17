@@ -201,17 +201,18 @@ public class ListaPreguntas {
             case 1 -> {
                 //Preguntas de verdadero/falso
 
-                tamano = this.getContadorVF(); //Este contador es la variable STATIC, no el id de la pregunta en si
-                //System.out.println(tamano);
+                tamano = contadorVF; //Este contador es la variable STATIC, no el id de la pregunta en si
+                System.out.println(tamano);
 
-                PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano];
+                PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano]; // el tamano es 1 porque no esta funcionando
 
-                int contadorVerdaderoFalso = 0;
+                int contadorVerdaderoFalso = -1;
 
                 for (Pregunta pregunta : this.lista) {
                     if (pregunta instanceof PreguntaVerdaderoFalso) {
-                        listaVerdaderoFalso[contadorVerdaderoFalso] = (PreguntaVerdaderoFalso) pregunta;
                         contadorVerdaderoFalso++;
+                        listaVerdaderoFalso[contadorVerdaderoFalso] = (PreguntaVerdaderoFalso) pregunta;
+
                     }
                 }
 

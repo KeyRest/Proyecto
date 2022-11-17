@@ -4,7 +4,7 @@ import archivos.EscritorArchivos;
 import archivos.LectorArchivos;
 import estructuras.ListaPreguntas;
 import java.io.IOException;
-import vistas.terminal.InterfazMenu;
+import vistas.interfazG.InterfazMenu;
 
 /**
  * Esta clase consiste en el controlador del programa, que contiene el main
@@ -22,14 +22,17 @@ public class Controlador {
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
+    public static int contadorVF = 0;
+    public static int contadorSU = 0;
+    public static int contadorSM = 0;
+    public static int contador = 0;
+
+    public static ListaPreguntas lista;
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         EscritorArchivos escritor = new EscritorArchivos();
         LectorArchivos lector = new LectorArchivos();
-        int contadorVF = 0;
-        int contadorSU = 0;
-        int contadorSM = 0;
-        int contador;
 
         lector.open("file.txt");
         String rutaAbsoluta = lector.readRuta();
@@ -38,8 +41,6 @@ public class Controlador {
         lector.open(rutaAbsoluta);
         int cantidadLineas = lector.contarLineas();
         lector.close();
-
-        ListaPreguntas lista = new ListaPreguntas(contadorSU, contadorSM, contadorVF);
 
         //System.out.println(cantidadLineas);
         boolean activo = true;
@@ -78,9 +79,7 @@ public class Controlador {
                     line = lector.getLector().readLine();
                     contador++;
                 }
-
                 lector.close();
-
                 lista = new ListaPreguntas(contadorSU, contadorSM, contadorVF);
 
                 lector.open(rutaAbsoluta);
@@ -88,15 +87,16 @@ public class Controlador {
                 lector.close();
             }
 
-            InterfazMenu interfaz = new InterfazMenu(lista);
+            InterfazMenu interfaz = new InterfazMenu();
+            ControladorMenu controlador = new ControladorMenu(interfaz, lista);
+            activo = false;
 
-            activo = interfaz.iniciarMenu();
-
-            //System.out.println(lista.getLista().length);
             escritor.open(rutaAbsoluta);
             escritor.escribir(lista.getLista());
             escritor.close();
+
         }
 
     }
+
 }
