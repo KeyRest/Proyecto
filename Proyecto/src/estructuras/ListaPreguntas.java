@@ -202,7 +202,6 @@ public class ListaPreguntas {
                 //Preguntas de verdadero/falso
 
                 tamano = contadorVF; //Este contador es la variable STATIC, no el id de la pregunta en si
-                System.out.println(tamano);
 
                 PreguntaVerdaderoFalso[] listaVerdaderoFalso = new PreguntaVerdaderoFalso[tamano]; // el tamano es 1 porque no esta funcionando
 

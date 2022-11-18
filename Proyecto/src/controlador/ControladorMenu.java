@@ -5,6 +5,7 @@ import vistas.interfazG.InterfazMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import vistas.interfazG.InterfazEliminar;
 import vistas.interfazG.InterfazMostrar;
 
 /**
@@ -33,7 +34,8 @@ public class ControladorMenu implements ActionListener {
 
         }
         if (e.getSource() == vista.eliminarButtom) {
-
+            InterfazEliminar interfaz = new InterfazEliminar(vista, true);
+            ControladorEliminar controlador = new ControladorEliminar(interfaz, lista);
         }
         if (e.getSource() == vista.mostrarButtom) {
             InterfazMostrar mostrar = new InterfazMostrar(vista, true);

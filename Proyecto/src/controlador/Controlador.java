@@ -89,11 +89,12 @@ public class Controlador {
 
             InterfazMenu interfaz = new InterfazMenu();
             ControladorMenu controlador = new ControladorMenu(interfaz, lista);
-            activo = false;
 
             escritor.open(rutaAbsoluta);
             escritor.escribir(lista.getLista());
             escritor.close();
+
+            activo = false;
 
         }
 

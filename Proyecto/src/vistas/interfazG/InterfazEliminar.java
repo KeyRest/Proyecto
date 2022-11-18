@@ -8,12 +8,12 @@ package vistas.interfazG;
  *
  * @author Administrator
  */
-public class InterfazMostrar extends javax.swing.JDialog {
+public class InterfazEliminar extends javax.swing.JDialog {
 
     /**
      * Creates new form InterfazMostrar
      */
-    public InterfazMostrar(java.awt.Frame parent, boolean modal) {
+    public InterfazEliminar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -33,15 +33,15 @@ public class InterfazMostrar extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         preguntasList = new javax.swing.JList<>();
         tipoPregunta = new javax.swing.JComboBox<>();
-        volverButtom = new javax.swing.JButton();
         jlistButtom = new javax.swing.JButton();
+        volverButtom = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Mostrar");
+        jLabel1.setText("Eliminar");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
 
         jScrollPane1.setViewportView(preguntasList);
@@ -49,17 +49,6 @@ public class InterfazMostrar extends javax.swing.JDialog {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, 240));
 
         jPanel1.add(tipoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 230, -1));
-
-        volverButtom.setBackground(new java.awt.Color(51, 153, 255));
-        volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        volverButtom.setForeground(new java.awt.Color(255, 255, 255));
-        volverButtom.setText("VOLVER");
-        volverButtom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volverButtomActionPerformed(evt);
-            }
-        });
-        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 180, 30));
 
         jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
         jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -70,7 +59,18 @@ public class InterfazMostrar extends javax.swing.JDialog {
                 jlistButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 180, 30));
+        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
+
+        volverButtom.setBackground(new java.awt.Color(51, 153, 255));
+        volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        volverButtom.setForeground(new java.awt.Color(255, 255, 255));
+        volverButtom.setText("VOLVER AL MENU");
+        volverButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverButtomActionPerformed(evt);
+            }
+        });
+        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 240, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,13 +92,13 @@ public class InterfazMostrar extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void volverButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_volverButtomActionPerformed
-
     private void jlistButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistButtomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jlistButtomActionPerformed
+
+    private void volverButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverButtomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,20 +117,23 @@ public class InterfazMostrar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InterfazMostrar dialog = new InterfazMostrar(new javax.swing.JFrame(), true);
+                InterfazEliminar dialog = new InterfazEliminar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

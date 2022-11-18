@@ -1,34 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controlador;
 
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 import modelo.Pregunta;
-import vistas.interfazG.InterfazMostrar;
+import vistas.interfazG.InterfazConfirmarEliminar;
+import vistas.interfazG.InterfazEliminar;
+import vistas.interfazG.InterfazMenu;
 
-public class ControladorMostrar implements ActionListener {
+public class ControladorEliminar implements ActionListener {
 
-    private InterfazMostrar vista;
+    private InterfazEliminar vista;
+    private InterfazMenu vista2;
     private final ListaPreguntas lista;
-    private int tipo;
+    private static int tipo;
+    private static int index;
 
-    public ControladorMostrar(InterfazMostrar vista, ListaPreguntas lista) {
+    public ControladorEliminar(InterfazEliminar vista, ListaPreguntas lista) {
         this.vista = vista;
         this.lista = lista;
         this.vista.tipoPregunta.addActionListener(this);
         this.vista.tipoPregunta.addItem("Verdadero o Falso");
         this.vista.tipoPregunta.addItem("Seleccion Unica");
         this.vista.tipoPregunta.addItem("Seleccion Multiple");
-        this.vista.volverButtom.addActionListener(this);
         this.vista.jlistButtom.addActionListener(this);
+        this.vista.volverButtom.addActionListener(this);
         vista.setVisible(true);
+        insertarPreguntasJList(1);
 
+    }
+
+    public ControladorEliminar(ListaPreguntas lista) {
+        this.lista = lista;
     }
 
     @Override
@@ -56,11 +60,15 @@ public class ControladorMostrar implements ActionListener {
         }
 
         if (e.getSource() == vista.jlistButtom) {
-            int index = this.vista.preguntasList.getSelectedIndex();
-            if (index != -1) {
-                JOptionPane.showMessageDialog(vista, lista.mostrarPregunta(tipo)[index].toString());
+            this.index = this.vista.preguntasList.getSelectedIndex();
+            if (this.index != -1) {
+
+                InterfazConfirmarEliminar mostrar = new InterfazConfirmarEliminar(vista2, true);
+                ControladorConfirmarEliminar controlador = new ControladorConfirmarEliminar(mostrar, lista);
+                vista.dispose();
             }
         }
+
         if (e.getSource() == vista.volverButtom) {
             vista.dispose();
         }
@@ -80,4 +88,11 @@ public class ControladorMostrar implements ActionListener {
         this.vista.preguntasList.setModel(model);
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public int getIndex() {
+        return index;
+    }
 }

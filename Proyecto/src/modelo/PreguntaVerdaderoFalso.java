@@ -1,23 +1,27 @@
 package modelo;
 
 /**
- * Esta clase consiste en el objeto PreguntaVerdaderoFalso
- * Tiene dos posibles respuestas, verdadero o falso
+ * Esta clase consiste en el objeto PreguntaVerdaderoFalso Tiene dos posibles
+ * respuestas, verdadero o falso
+ *
  * @version 3 de noviembre 2022
- * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740, Jeaustin Castro López C21912
+ * @author @author Keiron Garro Matamoros C23212, Jorge Zúñiga Torres C08740,
+ * Jeaustin Castro López C21912
  */
 public class PreguntaVerdaderoFalso extends Pregunta {
 
     private boolean respuesta;
 
-    /** Construye una pregunta de verdadero falso
+    /**
+     * Construye una pregunta de verdadero falso
      *
      */
-    public PreguntaVerdaderoFalso(){
-        
+    public PreguntaVerdaderoFalso() {
+
     }
-    
-    /** Construye una pregunta de verdadero falso
+
+    /**
+     * Construye una pregunta de verdadero falso
      *
      * @param textoPregunta
      * @param categoria
@@ -30,7 +34,8 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         this.respuesta = respuesta;
     }
 
-    /** Retorna la respuesta
+    /**
+     * Retorna la respuesta
      *
      * @return La respuesta
      */
@@ -38,7 +43,8 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         return respuesta;
     }
 
-    /** Asigna la respuesta
+    /**
+     * Asigna la respuesta
      *
      * @param respuesta respuesta
      */
@@ -46,8 +52,9 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         this.respuesta = respuesta;
     }
 
-    /** Método que convierte los datos de la pregunta en una hilera de texto
-     * para ser leída y escrita en archivos de texto
+    /**
+     * Método que convierte los datos de la pregunta en una hilera de texto para
+     * ser leída y escrita en archivos de texto
      *
      * @return La hilera de texto con los datos de la pregunta
      */
@@ -56,7 +63,8 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         return tipo + "-" + id + "-" + textoPregunta + "-" + categoria + "-" + respuesta;
     }
 
-    /** Evalúa si la respuesta es correcta
+    /**
+     * Evalúa si la respuesta es correcta
      *
      * @return True o False, dependiendo si la respuesta es correcta o no
      */
@@ -65,7 +73,8 @@ public class PreguntaVerdaderoFalso extends Pregunta {
         return false;
     }
 
-    /** Evalúa si la respuesta es correcta
+    /**
+     * Evalúa si la respuesta es correcta
      *
      * @param respuestaUsuario La respuesta
      * @return True o False, dependiendo si la respuesta es correcta o no
@@ -86,17 +95,18 @@ public class PreguntaVerdaderoFalso extends Pregunta {
     @Override
     public String toString() {
         String categoriaEnTexto = "";
-        
-        switch(this.categoria){
-            case "1" -> categoriaEnTexto = "Deporte";
-            case "2" -> categoriaEnTexto = "Entrenamiento";
-            case "3" -> categoriaEnTexto = "Historia";
+
+        switch (this.categoria) {
+            case "1" ->
+                categoriaEnTexto = "Deporte";
+            case "2" ->
+                categoriaEnTexto = "Entretenimiento";
+            case "3" ->
+                categoriaEnTexto = "Historia";
         }
-        
-        return "TEXTO PREGUNTA = " + this.textoPregunta + "\nCATEGORÍA = " + categoriaEnTexto + "\n"
-                + "RESPUESTA = " + this.respuesta ;
+
+        return "TEXTO PREGUNTA= " + this.textoPregunta + "\n" + "CATEGORÍA= " + categoriaEnTexto + "\n"
+                + "RESPUESTA= " + this.respuesta;
     }
-    
-    
-    
+
 }
