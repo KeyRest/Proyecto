@@ -8,12 +8,12 @@ package vistas.interfazG;
  *
  * @author Administrator
  */
-public class InterfazMostrar extends javax.swing.JDialog {
+public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
 
     /**
      * Creates new form InterfazMostrar
      */
-    public InterfazMostrar(java.awt.Frame parent, boolean modal) {
+    public InterfazActualizarTrueFalse(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -32,28 +32,23 @@ public class InterfazMostrar extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         preguntasList = new javax.swing.JList<>();
-        tipoPregunta = new javax.swing.JComboBox<>();
         volverButtom = new javax.swing.JButton();
         jlistButtom = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        trueOrFalse = new javax.swing.JComboBox<>();
+        categoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Mostrar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
+        jLabel1.setText("ACTUALIZAR");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, -2, 370, 60));
 
         jScrollPane1.setViewportView(preguntasList);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, 240));
-
-        tipoPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoPreguntaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(tipoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 230, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 340, 30));
 
         volverButtom.setBackground(new java.awt.Color(51, 153, 255));
         volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -76,6 +71,25 @@ public class InterfazMostrar extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 180, 30));
+
+        jLabel2.setText("NUEVO TEXTO: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 120, 120, 30));
+
+        trueOrFalse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        trueOrFalse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trueOrFalseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(trueOrFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
+
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entretenimiento", "Deporte", "Historia", " " }));
+        categoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoriaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,9 +119,13 @@ public class InterfazMostrar extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jlistButtomActionPerformed
 
-    private void tipoPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPreguntaActionPerformed
+    private void trueOrFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trueOrFalseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tipoPreguntaActionPerformed
+    }//GEN-LAST:event_trueOrFalseActionPerformed
+
+    private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,20 +144,23 @@ public class InterfazMostrar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazMostrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InterfazMostrar dialog = new InterfazMostrar(new javax.swing.JFrame(), true);
+                InterfazActualizarTrueFalse dialog = new InterfazActualizarTrueFalse(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -152,12 +173,14 @@ public class InterfazMostrar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JComboBox<String> categoria;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton jlistButtom;
     public javax.swing.JList<String> preguntasList;
-    public javax.swing.JComboBox<String> tipoPregunta;
+    public javax.swing.JComboBox<String> trueOrFalse;
     public javax.swing.JButton volverButtom;
     // End of variables declaration//GEN-END:variables
 }

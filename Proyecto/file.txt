@@ -1,1 +1,1 @@
-C:\Users\Administrator\Documents\NetBeansProjects\preguntas.txt
+C:\Users\maris\Documents\NetBeansProjects\preguntas.txt
