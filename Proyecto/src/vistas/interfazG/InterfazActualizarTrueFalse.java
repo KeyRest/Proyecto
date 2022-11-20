@@ -30,13 +30,12 @@ public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        preguntasList = new javax.swing.JList<>();
         volverButtom = new javax.swing.JButton();
         jlistButtom = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         trueOrFalse = new javax.swing.JComboBox<>();
         categoria = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,10 +44,6 @@ public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel1.setText("ACTUALIZAR");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, -2, 370, 60));
-
-        jScrollPane1.setViewportView(preguntasList);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 340, 30));
 
         volverButtom.setBackground(new java.awt.Color(51, 153, 255));
         volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -64,7 +59,7 @@ public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
         jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
         jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jlistButtom.setForeground(new java.awt.Color(255, 255, 255));
-        jlistButtom.setText("SELECCIONAR");
+        jlistButtom.setText("CONFIRMAR");
         jlistButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jlistButtomActionPerformed(evt);
@@ -83,13 +78,14 @@ public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
         });
         jPanel1.add(trueOrFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
-        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entretenimiento", "Deporte", "Historia", " " }));
+        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entretenimiento", "Deporte", "Historia" }));
         categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoriaActionPerformed(evt);
             }
         });
         jPanel1.add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 122, 330, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,9 +173,8 @@ public class InterfazActualizarTrueFalse extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextField jTextField1;
     public javax.swing.JButton jlistButtom;
-    public javax.swing.JList<String> preguntasList;
     public javax.swing.JComboBox<String> trueOrFalse;
     public javax.swing.JButton volverButtom;
     // End of variables declaration//GEN-END:variables
