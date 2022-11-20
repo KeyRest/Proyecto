@@ -11,6 +11,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
 import vistas.interfazG.InterfazActualizar;
+import vistas.interfazG.InterfazActualizarMultiple;
+import vistas.interfazG.InterfazActualizarSeleccionUnica;
 import vistas.interfazG.InterfazMenu;
 import vistas.interfazG.InterfazActualizarTrueFalse;
 
@@ -21,7 +23,7 @@ public class ControladorActualizar implements ActionListener {
     private int tipo;
     private InterfazMenu parent;
 
-    public ControladorActualizar(InterfazMenu parent,InterfazActualizar vista, ListaPreguntas lista) {
+    public ControladorActualizar(InterfazMenu parent, InterfazActualizar vista, ListaPreguntas lista) {
         this.vista = vista;
         this.parent = parent;
         this.lista = lista;
@@ -62,8 +64,26 @@ public class ControladorActualizar implements ActionListener {
         if (e.getSource() == vista.jlistButtom) {
             int index = this.vista.preguntasList.getSelectedIndex();
             if (index != -1) {
-                InterfazActualizarTrueFalse interfaz = new InterfazActualizarTrueFalse(parent, true);
-                ControladorActualizarTrueFalse controlador = new ControladorActualizarTrueFalse(index, interfaz, lista);
+                int opcion = vista.tipoPregunta.getSelectedIndex() + 1;
+                switch (opcion) {
+                    case 1:
+                        InterfazActualizarTrueFalse interfazTF = new InterfazActualizarTrueFalse(parent, true);
+                        ControladorActualizarTrueFalse controladorTF = new ControladorActualizarTrueFalse(index, interfazTF, lista);
+                        break;
+                    case 2:
+                        InterfazActualizarSeleccionUnica interfazSU = new InterfazActualizarSeleccionUnica(parent, true);
+                        ControladorActualizarSeleccionUnica controladorSU = new ControladorActualizarSeleccionUnica(index, interfazSU, lista);
+
+                        break;
+                    case 3:
+                        InterfazActualizarMultiple interfazSM = new InterfazActualizarMultiple(parent, true);
+                        ControladorActualizarMultiple controladorSM = new ControladorActualizarMultiple(index, interfazSM, lista);
+
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+
             }
         }
         if (e.getSource() == vista.volverButtom) {

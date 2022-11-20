@@ -27,7 +27,7 @@ public class ControladorActualizarMultiple implements ActionListener {
     private String texto3;
     private String texto4;
     private int index;
-    private String categoria = "0000";
+    private String categoria;
 
     public ControladorActualizarMultiple(int index, InterfazActualizarMultiple vista, ListaPreguntas lista) {
         this.index = index;
@@ -50,7 +50,7 @@ public class ControladorActualizarMultiple implements ActionListener {
             texto2 = vista.jTextField3.getText();
             texto3 = vista.jTextField4.getText();
             texto4 = vista.jTextField5.getText();
-            if (pregunta.length() > 4 && pregunta.length() < 50) {
+            if (pregunta.length() >= 4 && pregunta.length() <= 50) {
 
                 String seleccionado = (String) vista.trueOrFalse.getSelectedItem();
 
@@ -64,41 +64,41 @@ public class ControladorActualizarMultiple implements ActionListener {
                     default:
                         throw new AssertionError();
                 }
-                
+
                 String seleccionado2 = (String) vista.jComboBox1.getSelectedItem();
 
                 switch (seleccionado2) {
                     case "True":
-                        this.respuesta1 = true;
+                        this.respuesta2 = true;
                         break;
                     case "False":
-                        this.respuesta1 = false;
+                        this.respuesta2 = false;
                         break;
                     default:
                         throw new AssertionError();
                 }
-                
+
                 String seleccionado3 = (String) vista.jComboBox2.getSelectedItem();
 
                 switch (seleccionado3) {
                     case "True":
-                        this.respuesta1 = true;
+                        this.respuesta3 = true;
                         break;
                     case "False":
-                        this.respuesta1 = false;
+                        this.respuesta3 = false;
                         break;
                     default:
                         throw new AssertionError();
                 }
-                
+
                 String seleccionado4 = (String) vista.jComboBox3.getSelectedItem();
 
                 switch (seleccionado4) {
                     case "True":
-                        this.respuesta1 = true;
+                        this.respuesta4 = true;
                         break;
                     case "False":
-                        this.respuesta1 = false;
+                        this.respuesta4 = false;
                         break;
                     default:
                         throw new AssertionError();
@@ -119,9 +119,10 @@ public class ControladorActualizarMultiple implements ActionListener {
                     default:
                         throw new AssertionError();
                 }
+                System.out.println(respuesta1 + "" + respuesta2 + "" + respuesta3 + "" + respuesta4);
                 Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4);
                 vista.dispose();
-                JOptionPane.showMessageDialog(vista, "Se ha actualizado");                
+                JOptionPane.showMessageDialog(vista, "Se ha actualizado");
             }
         }
 

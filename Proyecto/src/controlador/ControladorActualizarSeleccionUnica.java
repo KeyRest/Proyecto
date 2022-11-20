@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,9 +65,14 @@ public class ControladorActualizarSeleccionUnica implements ActionListener {
                     && validarLength(respuesta2, 1, 20)
                     && validarLength(respuesta3, 1, 20)
                     && validarLength(respuesta4, 1, 20)) {
-                lista.actualizarPregunta(index, pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, 1);
+                Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, 1);
+                System.out.println(index + pregunta + respuesta1 + respuesta2 + respuesta3 + respuesta4 + seleccionado);
+                JOptionPane.showMessageDialog(vista, "La pregunta a sido actualizada");
+                vista.dispose();
+
             } else {
-                JOptionPane.showMessageDialog(vista, "Las preguntas deben tener como minimo 4 y como maximo 50 caracteres /n Las respuestas deben tener como minimo 1 y como maximo 20 caracteres");
+                JOptionPane.showMessageDialog(vista, "Las preguntas deben tener como minimo 4 y como maximo 50 caracteres \n Las respuestas deben tener como minimo 1 y como maximo 20 caracteres");
+
             }
         }
 
@@ -78,7 +84,7 @@ public class ControladorActualizarSeleccionUnica implements ActionListener {
 
     public boolean validarLength(String texto, int min, int max) {
         boolean temp = false;
-        if (texto.length() < min && texto.length() > max) {
+        if (texto.length() >= min && texto.length() <= max) {
             temp = true;
         }
         return temp;

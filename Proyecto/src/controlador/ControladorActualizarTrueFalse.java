@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ public class ControladorActualizarTrueFalse implements ActionListener {
     private InterfazActualizarTrueFalse vista;
     private final ListaPreguntas lista;
     private boolean respuesta;
+    private String texto;
     private int index;
     private String categoria;
 
@@ -35,39 +37,44 @@ public class ControladorActualizarTrueFalse implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == vista.trueOrFalse) {
-            String seleccionado = (String) vista.trueOrFalse.getSelectedItem();
+        if (e.getSource() == vista.jlistButtom) {
+            texto = vista.jTextField1.getText();
+            if (texto.length() > 4 && texto.length() < 50) {
 
-            switch (seleccionado) {
-                case "True":
-                    this.respuesta = true;
-                    break;
-                case "False":
-                    this.respuesta = false;
-                    break;
-                default:
-                    throw new AssertionError();
+                String seleccionado = (String) vista.trueOrFalse.getSelectedItem();
+
+                switch (seleccionado) {
+                    case "True":
+                        this.respuesta = true;
+                        break;
+                    case "False":
+                        this.respuesta = false;
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+
+                String seleccionado2 = (String) vista.categoria.getSelectedItem();
+
+                switch (seleccionado2) {
+                    case "Entretenimiento":
+                        this.categoria = "1";
+                        break;
+                    case "Deporte":
+                        this.categoria = "2";
+                        break;
+                    case "Historia":
+                        this.categoria = "3";
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
+                Controlador.lista.actualizarPregunta(index + 1, texto, categoria, respuesta);
+                vista.dispose();
+                JOptionPane.showMessageDialog(vista, "Se ha actualizado");                
             }
         }
-        
-        if (e.getSource() == vista.trueOrFalse) {
-            String seleccionado = (String) vista.trueOrFalse.getSelectedItem();
 
-            switch (seleccionado) {
-                case "Entretenimiento":
-                    this.categoria = "Entretenimiento";
-                    break;
-                case "Deporte":
-                    this.categoria = "Deporte";
-                    break;
-                case "Historia":
-                    this.categoria = "Historia";
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-        }
-        
         if (e.getSource() == vista.volverButtom) {
             vista.dispose();
         }
