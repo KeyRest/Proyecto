@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
-import vistas.interfazG.InterfazMostrar;
+import vistas.InterfazMostrar;
 
 public class ControladorMostrar implements ActionListener {
 

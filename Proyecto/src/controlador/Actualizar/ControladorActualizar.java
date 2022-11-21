@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador;
+package controlador.Actualizar;
 
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
-import vistas.interfazG.InterfazActualizar;
-import vistas.interfazG.InterfazActualizarMultiple;
-import vistas.interfazG.InterfazActualizarSeleccionUnica;
-import vistas.interfazG.InterfazMenu;
-import vistas.interfazG.InterfazActualizarTrueFalse;
+import vistas.InterfazActualizar;
+import vistas.InterfazActualizarSeleccionMultiple;
+import vistas.InterfazActualizarSeleccionUnica;
+import vistas.InterfazMenu;
+import vistas.InterfazActualizarTrueFalse;
 
 public class ControladorActualizar implements ActionListener {
 
@@ -76,8 +76,8 @@ public class ControladorActualizar implements ActionListener {
 
                         break;
                     case 3:
-                        InterfazActualizarMultiple interfazSM = new InterfazActualizarMultiple(parent, true);
-                        ControladorActualizarMultiple controladorSM = new ControladorActualizarMultiple(index, interfazSM, lista);
+                        InterfazActualizarSeleccionMultiple interfazSM = new InterfazActualizarSeleccionMultiple(parent, true);
+                        ControladorActualizarSeleccionMultiple controladorSM = new ControladorActualizarSeleccionMultiple(index, interfazSM, lista);
 
                         break;
                     default:

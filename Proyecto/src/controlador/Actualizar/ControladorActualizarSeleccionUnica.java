@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador;
+package controlador.Actualizar;
 
+import controlador.Controlador;
 import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
-import vistas.interfazG.InterfazActualizarSeleccionUnica;
+import vistas.InterfazActualizarSeleccionUnica;
 
 public class ControladorActualizarSeleccionUnica implements ActionListener {
 

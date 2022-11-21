@@ -8,12 +8,12 @@ package vistas;
  * asdlas
  * @author Administrator
  */
-public class InterfazActualizarMultiple extends javax.swing.JDialog {
+public class InterfazActualizarSeleccionMultiple extends javax.swing.JDialog {
 
     /**
      * Creates new form InterfazMostrar
      */
-    public InterfazActualizarMultiple(java.awt.Frame parent, boolean modal) {
+    public InterfazActualizarSeleccionMultiple(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -182,14 +182,22 @@ public class InterfazActualizarMultiple extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionMultiple.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -202,7 +210,7 @@ public class InterfazActualizarMultiple extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InterfazActualizarMultiple dialog = new InterfazActualizarMultiple(new javax.swing.JFrame(), true);
+                InterfazActualizarSeleccionMultiple dialog = new InterfazActualizarSeleccionMultiple(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

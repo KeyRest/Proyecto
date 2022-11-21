@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador;
+package controlador.Insertar;
 
 import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import modelo.Pregunta;
-import vistas.interfazG.InterfazActualizarMultiple;
+import vistas.InterfazInsertarSeleccionMultiple;
 
-public class ControladorActualizarMultiple implements ActionListener {
+public class ControladorInsertarMultiple implements ActionListener {
 
-    private InterfazActualizarMultiple vista;
+    private InterfazInsertarSeleccionMultiple vista;
     private final ListaPreguntas lista;
     private boolean respuesta1;
     private boolean respuesta2;
@@ -26,13 +24,13 @@ public class ControladorActualizarMultiple implements ActionListener {
     private String texto2;
     private String texto3;
     private String texto4;
-    private int index;
     private String categoria;
 
-    public ControladorActualizarMultiple(int index, InterfazActualizarMultiple vista, ListaPreguntas lista) {
-        this.index = index;
+    public ControladorInsertarMultiple(InterfazInsertarSeleccionMultiple vista, ListaPreguntas lista, String pregunta, String categoria) {
         this.vista = vista;
         this.lista = lista;
+        this.categoria = categoria;
+        this.pregunta = pregunta;
         this.vista.trueOrFalse.addActionListener(this);
         this.vista.trueOrFalse.addActionListener(this);
         this.vista.volverButtom.addActionListener(this);
@@ -45,12 +43,11 @@ public class ControladorActualizarMultiple implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == vista.jlistButtom) {
-            pregunta = vista.jTextField1.getText();
             texto1 = vista.jTextField2.getText();
             texto2 = vista.jTextField3.getText();
             texto3 = vista.jTextField4.getText();
             texto4 = vista.jTextField5.getText();
-            if (pregunta.length() >= 4 && pregunta.length() <= 50) {
+            if (validarLength(texto1, 1, 20) && validarLength(texto2, 1, 20) && validarLength(texto3, 1, 20) && validarLength(texto4, 1, 20)) {
 
                 String seleccionado = (String) vista.trueOrFalse.getSelectedItem();
 
@@ -104,32 +101,31 @@ public class ControladorActualizarMultiple implements ActionListener {
                         throw new AssertionError();
                 }
 
-                String seleccionado5 = (String) vista.categoria.getSelectedItem();
-
-                switch (seleccionado5) {
-                    case "Entretenimiento":
-                        this.categoria = "1";
-                        break;
-                    case "Deporte":
-                        this.categoria = "2";
-                        break;
-                    case "Historia":
-                        this.categoria = "3";
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
                 System.out.println(respuesta1 + "" + respuesta2 + "" + respuesta3 + "" + respuesta4);
-                Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4);
-                vista.dispose();
-                JOptionPane.showMessageDialog(vista, "Se ha actualizado");
+                if (respuesta1 || respuesta2 || respuesta3 || respuesta4) {
+                    Controlador.lista.insertarPregunta(pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4, lista.getContadorSM() + 1);
+                    vista.dispose();
+                    JOptionPane.showMessageDialog(vista, "Se ha actualizado");
+                } else {
+                    JOptionPane.showMessageDialog(vista, "Debe seleccion al menos una correcta");
+                }
+
+                if (e.getSource() == vista.volverButtom) {
+                    vista.dispose();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(vista, "Las respuestas deben tener como minimo 4 y como maximo 20 caracteres");
             }
-        }
 
-        if (e.getSource() == vista.volverButtom) {
-            vista.dispose();
         }
-
     }
 
+    public boolean validarLength(String texto, int min, int max) {
+        boolean temp = false;
+        if (texto.length() >= min && texto.length() <= max) {
+            temp = true;
+        }
+        return temp;
+    }
 }

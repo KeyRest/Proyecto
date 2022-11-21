@@ -4,7 +4,7 @@ import archivos.EscritorArchivos;
 import archivos.LectorArchivos;
 import estructuras.ListaPreguntas;
 import java.io.IOException;
-import vistas.interfazG.InterfazMenu;
+import vistas.InterfazMenu;
 
 /**
  * Esta clase consiste en el controlador del programa, que contiene el main

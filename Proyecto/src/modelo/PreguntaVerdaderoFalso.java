@@ -105,7 +105,7 @@ public class PreguntaVerdaderoFalso extends Pregunta {
                 categoriaEnTexto = "Historia";
         }
 
-        return "TEXTO PREGUNTA= " + this.textoPregunta + "\n" + "CATEGORÍA= " + categoriaEnTexto + "\nw"
+        return "TEXTO PREGUNTA= " + this.textoPregunta + "\n" + "CATEGORÍA= " + categoriaEnTexto + "\n"
                 + "RESPUESTA= " + this.respuesta;
     }
 

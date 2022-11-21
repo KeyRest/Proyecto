@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package vistas.interfazG;
+package vistas;
 
 /**
  *
  * @author Administrator
  */
-public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
+public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
 
     /**
      * Creates new form InterfazMostrar
      */
-    public InterfazActualizarSeleccionUnica(java.awt.Frame parent, boolean modal) {
+    public InterfazInsertarSeleccionUnica(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -32,15 +32,11 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         volverButtom = new javax.swing.JButton();
         jlistButtom = new javax.swing.JButton();
-        categoria = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -50,8 +46,8 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("ACTUALIZAR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 320, 60));
+        jLabel1.setText("INSERTAR");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, 60));
 
         volverButtom.setBackground(new java.awt.Color(51, 153, 255));
         volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -62,7 +58,7 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
                 volverButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 180, 40));
+        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 180, 40));
 
         jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
         jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -73,51 +69,27 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
                 jlistButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 180, 40));
-
-        categoria.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entretenimiento", "Deporte", "Historia" }));
-        categoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoriaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 170, 40));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 340, 30));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 340, 30));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 340, 30));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 340, 30));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 340, 30));
+        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 180, 40));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 340, 30));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 340, 30));
+        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 340, 30));
+        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 340, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jLabel2.setText("RESPUESTA FALSA 3");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 140, 30));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel3.setText("NUEVO TEXTO");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 90, 30));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel4.setText("CATEGORIA");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, -1, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jLabel5.setText("RESPUESTA FALSA 1");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 140, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 140, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jLabel6.setText("RESPUESTA FALSA 2");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 140, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 11)); // NOI18N
         jLabel7.setText("RESPUESTA CORRECTA");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 140, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,7 +104,7 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -146,14 +118,6 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
     private void jlistButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistButtomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jlistButtomActionPerformed
-
-    private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_categoriaActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,14 +136,22 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazActualizarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarSeleccionUnica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -192,7 +164,7 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InterfazActualizarSeleccionUnica dialog = new InterfazActualizarSeleccionUnica(new javax.swing.JFrame(), true);
+                InterfazInsertarSeleccionUnica dialog = new InterfazInsertarSeleccionUnica(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -205,16 +177,12 @@ public class InterfazActualizarSeleccionUnica extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JComboBox<String> categoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
     public javax.swing.JTextField jTextField4;

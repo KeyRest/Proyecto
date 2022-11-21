@@ -1,13 +1,16 @@
 package controlador;
 
+import controlador.Actualizar.ControladorActualizar;
+import controlador.Insertar.ControladorInsertar;
 import estructuras.ListaPreguntas;
-import vistas.interfazG.InterfazMenu;
+import vistas.InterfazMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import vistas.interfazG.InterfazEliminar;
-import vistas.interfazG.InterfazMostrar;
-import vistas.interfazG.InterfazActualizar;
+import vistas.InterfazEliminar;
+import vistas.InterfazMostrar;
+import vistas.InterfazActualizar;
+import vistas.InterfazInsertar;
 
 /**
  *
@@ -40,11 +43,12 @@ public class ControladorMenu implements ActionListener {
             ControladorEliminar controlador = new ControladorEliminar(interfaz, lista);
         }
         if (e.getSource() == vista.mostrarButtom) {
-            InterfazMostrar mostrar = new InterfazMostrar(vista, true);
-            ControladorMostrar controlador = new ControladorMostrar(mostrar, lista);
+            InterfazMostrar interfaz = new InterfazMostrar(vista, true);
+            ControladorMostrar controlador = new ControladorMostrar(interfaz, lista);
         }
         if (e.getSource() == vista.insertarButtom) {
-
+            InterfazInsertar insertar = new InterfazInsertar();
+            ControladorInsertar controlador = new ControladorInsertar(vista, insertar, lista);
         }
         if (e.getSource() == vista.salirButtom) {
             System.exit(0);

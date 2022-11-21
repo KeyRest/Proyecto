@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package vistas.interfazG;
+package vistas;
 
 /**
  *
  * @author Administrator
  */
-public class InterfazEliminar extends javax.swing.JDialog {
+public class InterfazInsertarTrueFalse extends javax.swing.JDialog {
 
     /**
      * Creates new form InterfazMostrar
      */
-    public InterfazEliminar(java.awt.Frame parent, boolean modal) {
+    public InterfazInsertarTrueFalse(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -30,75 +30,80 @@ public class InterfazEliminar extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        preguntasList = new javax.swing.JList<>();
-        tipoPregunta = new javax.swing.JComboBox<>();
-        jlistButtom = new javax.swing.JButton();
         volverButtom = new javax.swing.JButton();
+        jlistButtom = new javax.swing.JButton();
+        trueOrFalse = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("Eliminar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, -1, -1));
-
-        jScrollPane1.setViewportView(preguntasList);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 440, 240));
-
-        jPanel1.add(tipoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 230, -1));
-
-        jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
-        jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jlistButtom.setForeground(new java.awt.Color(255, 255, 255));
-        jlistButtom.setText("SELECCIONAR");
-        jlistButtom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jlistButtomActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setText("LA RESPUESTA ES VERDADERA O FALSA?");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -30, 500, 150));
 
         volverButtom.setBackground(new java.awt.Color(51, 153, 255));
         volverButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         volverButtom.setForeground(new java.awt.Color(255, 255, 255));
-        volverButtom.setText("VOLVER AL MENU");
+        volverButtom.setText("VOLVER");
         volverButtom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 240, -1));
+        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 180, 30));
+
+        jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
+        jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlistButtom.setForeground(new java.awt.Color(255, 255, 255));
+        jlistButtom.setText("CONFIRMAR");
+        jlistButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jlistButtomActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, 30));
+
+        trueOrFalse.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        trueOrFalse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        trueOrFalse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trueOrFalseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(trueOrFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 190, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void volverButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volverButtomActionPerformed
+
     private void jlistButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jlistButtomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jlistButtomActionPerformed
 
-    private void volverButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverButtomActionPerformed
+    private void trueOrFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trueOrFalseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_volverButtomActionPerformed
+    }//GEN-LAST:event_trueOrFalseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,14 +122,42 @@ public class InterfazEliminar extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InterfazEliminar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InterfazInsertarTrueFalse.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -133,7 +166,7 @@ public class InterfazEliminar extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InterfazEliminar dialog = new InterfazEliminar(new javax.swing.JFrame(), true);
+                InterfazInsertarTrueFalse dialog = new InterfazInsertarTrueFalse(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -148,10 +181,8 @@ public class InterfazEliminar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton jlistButtom;
-    public javax.swing.JList<String> preguntasList;
-    public javax.swing.JComboBox<String> tipoPregunta;
+    public javax.swing.JComboBox<String> trueOrFalse;
     public javax.swing.JButton volverButtom;
     // End of variables declaration//GEN-END:variables
 }

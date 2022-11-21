@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import modelo.Pregunta;
-import vistas.interfazG.InterfazConfirmarEliminar;
-import vistas.interfazG.InterfazEliminar;
-import vistas.interfazG.InterfazMenu;
+import vistas.InterfazConfirmarEliminar;
+import vistas.InterfazEliminar;
+import vistas.InterfazMenu;
 
 public class ControladorEliminar implements ActionListener {
 
