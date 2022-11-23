@@ -51,7 +51,7 @@ public class ControladorMenu implements ActionListener {
             ControladorInsertar controlador = new ControladorInsertar(vista, insertar, lista);
         }
         if (e.getSource() == vista.salirButtom) {
-            System.exit(0);
+            vista.dispose();
         }
 
     }

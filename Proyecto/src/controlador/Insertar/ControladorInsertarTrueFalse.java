@@ -8,6 +8,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.InterfazActualizarTrueFalse;
 import vistas.InterfazInsertarTrueFalse;
@@ -50,7 +53,13 @@ public class ControladorInsertarTrueFalse implements ActionListener {
                     throw new AssertionError();
             }
 
-            Controlador.lista.insertarPregunta(texto, categoria, respuesta, lista.getContadorVF() + 1);
+            try {
+                Controlador.lista.insertarPregunta(texto, categoria, respuesta, lista.getContadorVF() -1);
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorInsertarTrueFalse.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ControladorInsertarTrueFalse.class.getName()).log(Level.SEVERE, null, ex);
+            }
             vista.dispose();
             JOptionPane.showMessageDialog(vista, "Se ha ingresado correctamente");
         }

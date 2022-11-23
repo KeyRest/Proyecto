@@ -8,6 +8,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.InterfazActualizarSeleccionUnica;
 import vistas.InterfazInsertarSeleccionUnica;
@@ -22,11 +25,13 @@ public class ControladorInsertarSeleccionUnica implements ActionListener {
     private String respuesta4;
     private String pregunta;
     private String categoria;
+    private int opcion;
 
     public ControladorInsertarSeleccionUnica(InterfazInsertarSeleccionUnica vista, ListaPreguntas lista, String pregunta, String categoria) {
         this.vista = vista;
         this.lista = lista;
         this.pregunta = pregunta;
+        this.categoria = categoria;
         this.vista.volverButtom.addActionListener(this);
         this.vista.jlistButtom.addActionListener(this);
         vista.setVisible(true);
@@ -46,8 +51,12 @@ public class ControladorInsertarSeleccionUnica implements ActionListener {
                     && validarLength(respuesta2, 1, 20)
                     && validarLength(respuesta3, 1, 20)
                     && validarLength(respuesta4, 1, 20)) {
-                System.out.println(pregunta + categoria + respuesta1 + respuesta2 + respuesta3 + respuesta4);
-                Controlador.lista.insertarPregunta(pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, 0, lista.getContadorSU() + 1);
+                opcion = vista.opc.getSelectedIndex() + 1;
+                try {
+                    Controlador.lista.insertarPregunta(pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcion, lista.getContadorSU());
+                } catch (ClassNotFoundException | IOException ex) {
+                    Logger.getLogger(ControladorInsertarSeleccionUnica.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 JOptionPane.showMessageDialog(vista, "La pregunta a sido actualizada");
                 vista.dispose();

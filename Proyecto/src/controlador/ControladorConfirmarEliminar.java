@@ -7,6 +7,9 @@ package controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.InterfazConfirmarEliminar;
 
@@ -31,7 +34,11 @@ public class ControladorConfirmarEliminar implements ActionListener {
 
         if (e.getSource() == vista.confirmButton) {
 
-            lista.eliminarPregunta(this.controlador.getTipo(), this.controlador.getIndex() + 1);
+            try {
+                lista.eliminarPregunta(this.controlador.getTipo(), this.controlador.getIndex() + 1);
+            } catch (IOException | ClassNotFoundException ex) {
+                Logger.getLogger(ControladorConfirmarEliminar.class.getName()).log(Level.SEVERE, null, ex);
+            }
             vista.dispose();
             JOptionPane.showMessageDialog(vista, "Pregunta Eliminada Correctamente");
         }

@@ -9,6 +9,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
@@ -70,7 +73,13 @@ public class ControladorActualizarTrueFalse implements ActionListener {
                     default:
                         throw new AssertionError();
                 }
-                Controlador.lista.actualizarPregunta(index + 1, texto, categoria, respuesta);
+                try {
+                    Controlador.lista.actualizarPregunta(index + 1, texto, categoria, respuesta);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorActualizarTrueFalse.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ControladorActualizarTrueFalse.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 vista.dispose();
                 JOptionPane.showMessageDialog(vista, "Se ha actualizado");                
             }

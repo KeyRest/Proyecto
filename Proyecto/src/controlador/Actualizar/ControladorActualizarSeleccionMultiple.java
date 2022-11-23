@@ -9,6 +9,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
@@ -121,7 +124,13 @@ public class ControladorActualizarSeleccionMultiple implements ActionListener {
                         throw new AssertionError();
                 }
                 System.out.println(respuesta1 + "" + respuesta2 + "" + respuesta3 + "" + respuesta4);
-                Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4);
+                try {
+                    Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorActualizarSeleccionMultiple.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ControladorActualizarSeleccionMultiple.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 vista.dispose();
                 JOptionPane.showMessageDialog(vista, "Se ha actualizado");
             }

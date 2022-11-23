@@ -1,9 +1,12 @@
 package estructuras;
 
+import controlador.Controlador;
+import java.io.IOException;
 import modelo.Pregunta;
 import modelo.PreguntaVerdaderoFalso;
 import modelo.PreguntaSeleccionUnica;
 import modelo.PreguntaSeleccionMultiple;
+import java.util.Scanner;
 
 /**
  * Esta clase gestiona el array de preguntas, así como todas sus operaciones
@@ -16,10 +19,10 @@ public class ListaPreguntas {
 
     //Atributos
     private Pregunta[] lista;
-    private int cantidadPreguntas;
-    private int contadorSU;
-    private int contadorSM;
-    private int contadorVF;
+    private int contadorSU = Controlador.contadorSU;
+    private int contadorSM = Controlador.contadorSM;
+    private int contadorVF = Controlador.contadorVF;
+    //private int contador = Controlador.contador;
 
     /**
      * Construye una lista de preguntas
@@ -32,11 +35,7 @@ public class ListaPreguntas {
      * existen
      */
     public ListaPreguntas(int contadorSU, int contadorSM, int contadorVF) {
-        this.cantidadPreguntas = contadorSU + contadorSM + contadorVF;
         this.lista = new Pregunta[1];
-        this.contadorSU = contadorSU;
-        this.contadorSM = contadorSM;
-        this.contadorVF = contadorVF;
     }
 
     /**
@@ -89,14 +88,14 @@ public class ListaPreguntas {
      *
      * @param pregunta La pregunta que se va a agregar
      */
-    public void agregar(Pregunta pregunta) {
+    public void agregar(Pregunta pregunta) throws IOException, ClassNotFoundException {
 
-        if (this.cantidadPreguntas == lista.length) {
+        int cantPreguntas = contadorVF + contadorSM + contadorSU;
+        if (cantPreguntas >= lista.length) {
             this.aumentarLista();
         }
 
-        lista[lista.length - 1] = pregunta;
-        cantidadPreguntas++;
+        lista[lista.length -1] = pregunta;
     }
 
     /**
@@ -129,11 +128,16 @@ public class ListaPreguntas {
      * @param respuesta La respuesta, booleana, de la pregunta a insertar
      * @param contador El contador que es usado para calcular el id de la
      * pregunta
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      *
      */
-    public void insertarPregunta(String texto, String categoria, boolean respuesta, int contador) {
+    public void insertarPregunta(String texto, String categoria, boolean respuesta, int contador) throws IOException, ClassNotFoundException {
         PreguntaVerdaderoFalso pregunta = new PreguntaVerdaderoFalso(texto, categoria, respuesta, contador);
         this.agregar(pregunta);
+        
+        Controlador.guardar();
+        Controlador.cargar();
     }
 
     /**
@@ -148,13 +152,17 @@ public class ListaPreguntas {
      * @param opcionCorrecta La opcion correcta, del 1 al 4
      * @param contador El contador que es usado para calcular el id de la
      * pregunta orrecta
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.io.IOException
      *
      *
      */
     public void insertarPregunta(String texto, String categoria, String respuesta1,
-            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) {
+        String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta, int contador) throws ClassNotFoundException, IOException {
         PreguntaSeleccionUnica pregunta = new PreguntaSeleccionUnica(texto, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcionCorrecta, contador);
         this.agregar(pregunta);
+        Controlador.guardar();
+        Controlador.cargar();
     }
 
     /**
@@ -172,17 +180,21 @@ public class ListaPreguntas {
      * @param valorRespuesta4 El valor boolean de la respuesta4
      * @param contador El contador que es usado para calcular el id de la
      * pregunta orrecta
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      *
      *
      */
     public void insertarPregunta(String texto, String categoria, String respuesta1,
             boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2,
             String respuesta3, boolean valorRespuesta3, String respuesta4,
-            boolean valorRespuesta4, int contador) {
+            boolean valorRespuesta4, int contador) throws IOException, ClassNotFoundException {
         PreguntaSeleccionMultiple pregunta = new PreguntaSeleccionMultiple(texto, categoria, respuesta1,
                 valorRespuesta1, respuesta2, valorRespuesta2,
                 respuesta3, valorRespuesta3, respuesta4, valorRespuesta4, contador);
         this.agregar(pregunta);
+        Controlador.guardar();
+        Controlador.cargar();
 
     }
 
@@ -268,9 +280,11 @@ public class ListaPreguntas {
      * @param texto El texto nuevo
      * @param categoria La categoría nueva
      * @param respuesta La respuesta nueva
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      *
      */
-    public void actualizarPregunta(int id, String texto, String categoria, boolean respuesta) {
+    public void actualizarPregunta(int id, String texto, String categoria, boolean respuesta) throws IOException, ClassNotFoundException {
 
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] instanceof PreguntaVerdaderoFalso) {
@@ -282,6 +296,9 @@ public class ListaPreguntas {
                 }
             }
         }
+        Controlador.guardar();
+        Controlador.cargar();
+        
     }
 
     /**
@@ -296,10 +313,12 @@ public class ListaPreguntas {
      * @param respuesta3 La respuesta 3 nueva
      * @param respuesta4 La respuesta 4 nueva
      * @param opcionCorrecta La nueva opción correcta
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      *
      */
     public void actualizarPregunta(int id, String texto, String categoria, String respuesta1,
-            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) {
+            String respuesta2, String respuesta3, String respuesta4, int opcionCorrecta) throws IOException, ClassNotFoundException {
 
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] instanceof PreguntaSeleccionUnica) {
@@ -315,6 +334,9 @@ public class ListaPreguntas {
                 }
             }
         }
+        
+        Controlador.guardar();
+        Controlador.cargar();
 
     }
 
@@ -333,12 +355,14 @@ public class ListaPreguntas {
      * @param valorRespuesta2 El nuevo valor de la respuesta 2
      * @param valorRespuesta3 El nuevo valor de la respuesta 3
      * @param valorRespuesta4 El nuevo valor de la respuesta 4
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      *
      */
     public void actualizarPregunta(int id, String texto, String categoria, String respuesta1,
             boolean valorRespuesta1, String respuesta2, boolean valorRespuesta2,
             String respuesta3, boolean valorRespuesta3, String respuesta4,
-            boolean valorRespuesta4) {
+            boolean valorRespuesta4) throws IOException, ClassNotFoundException {
 
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] instanceof PreguntaSeleccionMultiple) {
@@ -358,6 +382,9 @@ public class ListaPreguntas {
                 }
             }
         }
+        
+        Controlador.guardar();
+        Controlador.cargar();
 
     }
 
@@ -366,10 +393,11 @@ public class ListaPreguntas {
      *
      * @param tipoPregunta El tipo de pregunta que se va a eliminar
      * @param id El id de la pregunta que se va a eliminar
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
      */
-    public void eliminarPregunta(int tipoPregunta, int id) {
+    public void eliminarPregunta(int tipoPregunta, int id) throws IOException, ClassNotFoundException {
         switch (tipoPregunta) {
-
             case 1:
                 for (int i = 0; i < lista.length; i++) {
                     if (lista[i] instanceof PreguntaVerdaderoFalso) {
@@ -398,8 +426,9 @@ public class ListaPreguntas {
                     }
                 }
                 break;
-
         }
+        Controlador.guardar();
+        Controlador.cargar();
     }
 
 }

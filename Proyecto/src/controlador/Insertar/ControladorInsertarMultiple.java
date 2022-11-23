@@ -8,6 +8,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import vistas.InterfazInsertarSeleccionMultiple;
 
@@ -41,6 +44,10 @@ public class ControladorInsertarMultiple implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == vista.volverButtom) {
+            vista.dispose();
+        }
 
         if (e.getSource() == vista.jlistButtom) {
             texto1 = vista.jTextField2.getText();
@@ -100,18 +107,16 @@ public class ControladorInsertarMultiple implements ActionListener {
                     default:
                         throw new AssertionError();
                 }
-
-                System.out.println(respuesta1 + "" + respuesta2 + "" + respuesta3 + "" + respuesta4);
                 if (respuesta1 || respuesta2 || respuesta3 || respuesta4) {
-                    Controlador.lista.insertarPregunta(pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4, lista.getContadorSM() + 1);
+                    try {
+                        Controlador.lista.insertarPregunta(pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4, lista.getContadorSM());
+                    } catch (IOException | ClassNotFoundException ex) {
+                        Logger.getLogger(ControladorInsertarMultiple.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     vista.dispose();
-                    JOptionPane.showMessageDialog(vista, "Se ha actualizado");
+                    JOptionPane.showMessageDialog(vista, "Se ha insertado");
                 } else {
                     JOptionPane.showMessageDialog(vista, "Debe seleccion al menos una correcta");
-                }
-
-                if (e.getSource() == vista.volverButtom) {
-                    vista.dispose();
                 }
 
             } else {

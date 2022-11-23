@@ -84,14 +84,17 @@ public class ControladorInsertar implements ActionListener {
                 case 1:
                     InterfazInsertarTrueFalse interfazTF = new InterfazInsertarTrueFalse(parent, true);
                     ControladorInsertarTrueFalse controladorTF = new ControladorInsertarTrueFalse(interfazTF, lista, categoria, texto);
+                    vista.dispose();
                     break;
                 case 2:
                     InterfazInsertarSeleccionUnica interfazSU = new InterfazInsertarSeleccionUnica(parent, true);
                     ControladorInsertarSeleccionUnica controladorSU = new ControladorInsertarSeleccionUnica(interfazSU, lista, texto, categoria);
+                    vista.dispose();
                     break;
                 case 3:
                     InterfazInsertarSeleccionMultiple interfazSM = new InterfazInsertarSeleccionMultiple(parent, true);
-                    ControladorInsertarMultiple controladorSM = new ControladorInsertarMultiple(interfazSM, lista,categoria,texto);
+                    ControladorInsertarMultiple controladorSM = new ControladorInsertarMultiple(interfazSM, lista,texto,categoria);
+                    vista.dispose();
                     break;
                 default:
                     throw new AssertionError();

@@ -40,6 +40,8 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        opc = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,7 +60,7 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
                 volverButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 180, 40));
+        jPanel1.add(volverButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 320, 180, 40));
 
         jlistButtom.setBackground(new java.awt.Color(51, 153, 255));
         jlistButtom.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -69,27 +71,34 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
                 jlistButtomActionPerformed(evt);
             }
         });
-        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 180, 40));
+        jPanel1.add(jlistButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 180, 40));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 340, 30));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 340, 30));
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 340, 30));
         jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 340, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel2.setText("RESPUESTA FALSA 3");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, 30));
+        jLabel2.setText("RESPUESTA CORRECTA");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 220, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel5.setText("RESPUESTA FALSA 1");
+        jLabel5.setText("RESPUESTA 2");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 140, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jLabel6.setText("RESPUESTA FALSA 2");
+        jLabel6.setText("RESPUESTA 3");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 140, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 1, 11)); // NOI18N
-        jLabel7.setText("RESPUESTA CORRECTA");
+        jLabel7.setText("RESPUESTA 1");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, 30));
+
+        opc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        jPanel1.add(opc, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 60, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jLabel3.setText("RESPUESTA 4");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 140, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,7 +113,7 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -179,6 +188,7 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -188,6 +198,7 @@ public class InterfazInsertarSeleccionUnica extends javax.swing.JDialog {
     public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField jTextField5;
     public javax.swing.JButton jlistButtom;
+    public javax.swing.JComboBox<String> opc;
     public javax.swing.JButton volverButtom;
     // End of variables declaration//GEN-END:variables
 }

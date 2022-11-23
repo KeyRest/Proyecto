@@ -9,6 +9,9 @@ import controlador.Controlador;
 import estructuras.ListaPreguntas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import modelo.Pregunta;
@@ -66,7 +69,11 @@ public class ControladorActualizarSeleccionUnica implements ActionListener {
                     && validarLength(respuesta2, 1, 20)
                     && validarLength(respuesta3, 1, 20)
                     && validarLength(respuesta4, 1, 20)) {
-                Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, 1);
+                try {
+                    Controlador.lista.actualizarPregunta(index + 1, pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, 1);
+                } catch (IOException | ClassNotFoundException ex) {
+                    Logger.getLogger(ControladorActualizarSeleccionUnica.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 System.out.println(index + pregunta + respuesta1 + respuesta2 + respuesta3 + respuesta4 + seleccionado);
                 JOptionPane.showMessageDialog(vista, "La pregunta a sido actualizada");
                 vista.dispose();
