@@ -19,9 +19,9 @@ public class ListaPreguntas {
 
     //Atributos
     private Pregunta[] lista;
-    private int contadorSU = Controlador.contadorSU;
-    private int contadorSM = Controlador.contadorSM;
-    private int contadorVF = Controlador.contadorVF;
+    private int contadorSU;
+    private int contadorSM;
+    private int contadorVF;
     //private int contador = Controlador.contador;
 
     /**
@@ -35,6 +35,9 @@ public class ListaPreguntas {
      * existen
      */
     public ListaPreguntas(int contadorSU, int contadorSM, int contadorVF) {
+        this.contadorSM = contadorSM;
+        this.contadorSU = contadorSU;
+        this.contadorVF = contadorVF;
         this.lista = new Pregunta[1];
     }
 
@@ -105,7 +108,7 @@ public class ListaPreguntas {
     private void aumentarLista() {
         Pregunta[] listaAux = new Pregunta[lista.length + 1];
         for (int i = 0; i < lista.length; i++) {
-            listaAux[i] = lista[i];
+            listaAux[i] = lista[i]; 
         }
         lista = listaAux;
     }

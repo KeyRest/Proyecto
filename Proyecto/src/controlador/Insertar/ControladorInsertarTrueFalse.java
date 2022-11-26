@@ -54,7 +54,7 @@ public class ControladorInsertarTrueFalse implements ActionListener {
             }
 
             try {
-                Controlador.lista.insertarPregunta(texto, categoria, respuesta, lista.getContadorVF() -1);
+                Controlador.lista.insertarPregunta(texto, categoria, respuesta, Controlador.contadorVF);
             } catch (IOException ex) {
                 Logger.getLogger(ControladorInsertarTrueFalse.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

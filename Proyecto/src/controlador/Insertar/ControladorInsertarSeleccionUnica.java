@@ -53,7 +53,7 @@ public class ControladorInsertarSeleccionUnica implements ActionListener {
                     && validarLength(respuesta4, 1, 20)) {
                 opcion = vista.opc.getSelectedIndex() + 1;
                 try {
-                    Controlador.lista.insertarPregunta(pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcion, lista.getContadorSU());
+                    Controlador.lista.insertarPregunta(pregunta, categoria, respuesta1, respuesta2, respuesta3, respuesta4, opcion, Controlador.contadorSU);
                 } catch (ClassNotFoundException | IOException ex) {
                     Logger.getLogger(ControladorInsertarSeleccionUnica.class.getName()).log(Level.SEVERE, null, ex);
                 }

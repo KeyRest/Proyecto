@@ -109,7 +109,7 @@ public class ControladorInsertarMultiple implements ActionListener {
                 }
                 if (respuesta1 || respuesta2 || respuesta3 || respuesta4) {
                     try {
-                        Controlador.lista.insertarPregunta(pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4, lista.getContadorSM());
+                        Controlador.lista.insertarPregunta(pregunta, categoria, texto1, respuesta1, texto2, respuesta2, texto3, respuesta3, texto4, respuesta4, Controlador.contadorSM);
                     } catch (IOException | ClassNotFoundException ex) {
                         Logger.getLogger(ControladorInsertarMultiple.class.getName()).log(Level.SEVERE, null, ex);
                     }

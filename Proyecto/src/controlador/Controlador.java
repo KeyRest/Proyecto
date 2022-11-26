@@ -22,10 +22,10 @@ public class Controlador {
      * @throws java.io.IOException
      * @throws java.lang.ClassNotFoundException
      */
-    public static int contadorVF = 0;
-    public static int contadorSU = 0;
-    public static int contadorSM = 0;
-    public static int contador = 0;
+    public static int contadorVF;
+    public static int contadorSU;
+    public static int contadorSM;
+    public static int contador;
     private static int cantidadLineas;
     private static String rutaAbsoluta;
     private static EscritorArchivos escritor;
@@ -39,7 +39,7 @@ public class Controlador {
         contadorSM = 0;
         contador = 0;
         if (cantidadLineas < 1) { //SI EL ARCHIVO ESTA VACIO
-
+            lista = new ListaPreguntas(0, 0, 0);
             lista.agregar(null);
 
             /*
@@ -58,7 +58,7 @@ public class Controlador {
 
                 switch (datos[0]) {
                     case "VF" ->
-                        contadorVF = Integer.parseInt(datos[1]) + 1;
+                        contadorVF = Integer.parseInt(datos[1]);
                     case "SM" ->
                         contadorSM = Integer.parseInt(datos[1]);
                     case "SU" ->
@@ -100,5 +100,4 @@ public class Controlador {
         InterfazMenu interfaz = new InterfazMenu();
         ControladorMenu controlador = new ControladorMenu(interfaz, lista);
     }
-
 }
